@@ -1,0 +1,189 @@
+/* Messages Page Styles */
+
+/* Conversation item hover */
+.conversation-item {
+  transition: all 0.2s ease;
+}
+
+.conversation-item:hover {
+  background-color: #f3f4f6;
+}
+
+.conversation-item.active {
+  background-color: #eff6ff;
+  border-left: 4px solid #3b82f6;
+}
+
+/* Message bubbles animation */
+#messages-area > div > div {
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Typing indicator animation */
+.typing-indicator {
+  display: inline-flex;
+  align-items: center;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  margin: 0 2px;
+  background-color: #9ca3af;
+  border-radius: 50%;
+  display: inline-block;
+  animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Message input focus */
+#message-input:focus {
+  transform: scale(1.01);
+  transition: transform 0.2s ease;
+}
+
+/* Send button pulse on hover */
+#send-message-btn:hover {
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Unread badge pulse */
+.conversation-item span[class*="bg-red-500"] {
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Smooth scroll in messages area */
+#messages-area {
+  scroll-behavior: smooth;
+}
+
+/* Chat window slide in */
+#chat-window {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Modal animations */
+#new-message-modal {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Message bubbles */
+.message-bubble {
+  animation: messagePop 0.2s ease-out;
+}
+
+@keyframes messagePop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styling for conversations */
+#conversations-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#conversations-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+#conversations-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+#conversations-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Messages area scrollbar */
+#messages-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+#messages-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#messages-area::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+#messages-area::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
