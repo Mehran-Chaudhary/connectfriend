@@ -1,0 +1,6 @@
+/* Footer Component Styles */
+
+/* Add any footer-specific styles here if needed in the future */
+footer a:hover {
+  transition: color 0.2s ease;
+}

@@ -1,0 +1,6 @@
+/* Navbar Component Styles */
+
+/* Navbar shadow transition */
+.navbar-container {
+  transition: box-shadow 0.3s ease;
+}
