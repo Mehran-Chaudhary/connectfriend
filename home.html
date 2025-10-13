@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - ConnecFriend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-['Inter'] antialiased bg-gray-50">
+    <div
+      class="min-h-screen flex items-center justify-center px-6 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"
+    >
+      <div class="max-w-2xl w-full text-center">
+        <!-- Success Icon -->
+        <div
+          class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce"
+        >
+          <svg
+            class="w-12 h-12 text-white"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+
+        <!-- Welcome Message -->
+        <div class="bg-white rounded-3xl shadow-2xl p-12">
+          <h1 class="text-4xl font-bold text-gray-900 mb-4">
+            Welcome to ConnecFriend! 🎉
+          </h1>
+          <p class="text-xl text-gray-600 mb-6" id="welcome-message">
+            You're successfully logged in
+          </p>
+
+          <!-- User Info -->
+          <div
+            class="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8"
+            id="user-info"
+          >
+            <div class="flex items-center justify-center space-x-4">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold"
+                id="user-avatar"
+              >
+                --
+              </div>
+              <div class="text-left">
+                <h2 class="text-2xl font-bold text-gray-900" id="user-name">
+                  Loading...
+                </h2>
+                <p class="text-gray-600" id="user-username">@username</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coming Soon -->
+          <div class="space-y-4 mb-8">
+            <h3 class="text-lg font-semibold text-gray-900">
+              Coming Soon Features:
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl"
+              >
+                <span class="text-2xl mb-2 block">📰</span>
+                <span class="font-semibold text-gray-900">News Feed</span>
+              </div>
+              <div
+                class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl"
+              >
+                <span class="text-2xl mb-2 block">👥</span>
+                <span class="font-semibold text-gray-900">Friends</span>
+              </div>
+              <div
+                class="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded-xl"
+              >
+                <span class="text-2xl mb-2 block">💬</span>
+                <span class="font-semibold text-gray-900">Messages</span>
+              </div>
+              <div
+                class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl"
+              >
+                <span class="text-2xl mb-2 block">👤</span>
+                <span class="font-semibold text-gray-900">Profile</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onclick="window.location.href='profile.html'"
+              class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+            >
+              View Profile (Coming Soon)
+            </button>
+            <button
+              id="logout-btn"
+              class="bg-gray-200 text-gray-700 px-8 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-all duration-200"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+
+        <!-- Back to Landing -->
+        <div class="mt-6">
+          <a
+            href="index.html"
+            class="text-gray-600 hover:text-blue-600 font-semibold"
+            >← Back to Landing Page</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data/users.js"></script>
+    <script>
+      // Check if user is logged in
+      const currentUser = getCurrentUser();
+
+      if (!currentUser) {
+        // Redirect to login if not logged in
+        window.location.href = "login.html";
+      } else {
+        // Display user information
+        document.getElementById(
+          "welcome-message"
+        ).textContent = `Welcome back, ${currentUser.fullName}!`;
+        document.getElementById("user-name").textContent = currentUser.fullName;
+        document.getElementById(
+          "user-username"
+        ).textContent = `@${currentUser.username}`;
+        document.getElementById("user-avatar").textContent =
+          currentUser.profilePicture;
+      }
+
+      // Logout functionality
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        if (confirm("Are you sure you want to logout?")) {
+          logoutUser();
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+  </body>
+</html>

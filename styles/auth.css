@@ -1,0 +1,59 @@
+/* Authentication Pages Styles */
+
+/* Input focus animations */
+input:focus {
+  transform: translateY(-1px);
+}
+
+/* Button hover effects */
+button[type="submit"]:hover {
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Checkbox custom styling */
+input[type="checkbox"]:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* Error shake animation */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+/* Success slide animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#success-message:not(.hidden),
+#error-message:not(.hidden) {
+  animation: slideDown 0.3s ease-out;
+}
