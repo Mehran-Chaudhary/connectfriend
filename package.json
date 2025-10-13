@@ -1,0 +1,23 @@
+{
+  "name": "connecfriend",
+  "version": "1.0.0",
+  "description": "A modern social networking platform built with Tailwind CSS and Vanilla JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "social-network",
+    "tailwindcss",
+    "javascript",
+    "web-app"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/connecfriend.git"
+  }
+}
+
