@@ -24,8 +24,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Display user profile
 function displayUserProfile(user) {
+  const alias = user.alias || user.profilePicture;
+  const isImageUrl =
+    user.profilePicture && user.profilePicture.startsWith("http");
+  const isCoverImageUrl = user.coverPhoto && user.coverPhoto.startsWith("http");
+
+  // Profile Avatar
+  const profileAvatar = document.getElementById("profile-avatar");
+  if (profileAvatar) {
+    if (isImageUrl) {
+      profileAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-3xl" />`;
+      profileAvatar.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      profileAvatar.textContent = alias;
+    }
+  }
+
+  // Cover Photo
+  const profileCover = document.getElementById("profile-cover");
+  if (profileCover && isCoverImageUrl) {
+    profileCover.style.backgroundImage = `url('${user.coverPhoto}')`;
+  }
+
   // Header section
-  document.getElementById("profile-avatar").textContent = user.profilePicture;
   document.getElementById("profile-name").textContent = user.fullName;
   document.getElementById("profile-username").textContent = `@${user.username}`;
   document.getElementById("profile-location").textContent = user.location;
@@ -35,13 +60,51 @@ function displayUserProfile(user) {
   document.getElementById("friends-count").textContent = user.friendsCount;
 
   // Create post avatar
-  document.getElementById("create-post-avatar").textContent =
-    user.profilePicture;
+  const createPostAvatar = document.getElementById("create-post-avatar");
+  if (createPostAvatar) {
+    if (isImageUrl) {
+      createPostAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      createPostAvatar.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      createPostAvatar.textContent = alias;
+    }
+  }
 
   // Post avatars
-  document.getElementById("post-avatar-1").textContent = user.profilePicture;
+  const postAvatar1 = document.getElementById("post-avatar-1");
+  const postAvatar2 = document.getElementById("post-avatar-2");
+
+  if (postAvatar1) {
+    if (isImageUrl) {
+      postAvatar1.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      postAvatar1.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      postAvatar1.textContent = alias;
+    }
+  }
+
+  if (postAvatar2) {
+    if (isImageUrl) {
+      postAvatar2.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      postAvatar2.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      postAvatar2.textContent = alias;
+    }
+  }
+
   document.getElementById("post-name-1").textContent = user.fullName;
-  document.getElementById("post-avatar-2").textContent = user.profilePicture;
   document.getElementById("post-name-2").textContent = user.fullName;
 }
 
@@ -72,18 +135,27 @@ function loadFriends() {
     } else {
       friendsPreview.innerHTML = friends
         .slice(0, 6)
-        .map(
-          (friend) => `
+        .map((friend) => {
+          const alias = friend.alias || friend.profilePicture;
+          const isImageUrl =
+            friend.profilePicture && friend.profilePicture.startsWith("http");
+          const avatarHTML = isImageUrl
+            ? `<img src="${friend.profilePicture}" alt="${friend.fullName}" class="w-full h-full object-cover rounded-lg" />`
+            : alias;
+
+          return `
         <div class="text-center">
-          <div class="w-full aspect-square bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center text-white text-sm font-bold mb-1">
-            ${friend.profilePicture}
+          <div class="w-full aspect-square ${
+            isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+          } rounded-lg flex items-center justify-center text-white text-sm font-bold mb-1 overflow-hidden">
+            ${avatarHTML}
           </div>
           <p class="text-xs text-gray-700 font-medium truncate">${
             friend.fullName.split(" ")[0]
           }</p>
         </div>
-      `
-        )
+      `;
+        })
         .join("");
     }
   }
@@ -102,13 +174,22 @@ function loadFriends() {
   }
 
   friendsList.innerHTML = friends
-    .map(
-      (friend) => `
+    .map((friend) => {
+      const alias = friend.alias || friend.profilePicture;
+      const isImageUrl =
+        friend.profilePicture && friend.profilePicture.startsWith("http");
+      const avatarHTML = isImageUrl
+        ? `<img src="${friend.profilePicture}" alt="${friend.fullName}" class="w-full h-full object-cover rounded-xl" />`
+        : alias;
+
+      return `
     <div class="friend-card bg-gray-50 border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-200">
       <div class="flex items-start justify-between">
         <div class="flex items-center space-x-3 flex-1">
-          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
-            ${friend.profilePicture}
+          <div class="w-12 h-12 ${
+            isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+          } rounded-xl flex items-center justify-center text-white text-lg font-bold flex-shrink-0 overflow-hidden">
+            ${avatarHTML}
           </div>
           <div class="flex-1 min-w-0">
             <h3 class="font-semibold text-gray-900 truncate">${
@@ -149,8 +230,8 @@ function loadFriends() {
         }
       </div>
     </div>
-  `
-    )
+  `;
+    })
     .join("");
 
   // Add event listeners to rating buttons

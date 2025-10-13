@@ -44,6 +44,14 @@ function loadConversations() {
       const participant = allUsers.find((u) => u.id === conv.participantId);
       if (!participant) return "";
 
+      const alias = participant.alias || participant.profilePicture;
+      const isImageUrl =
+        participant.profilePicture &&
+        participant.profilePicture.startsWith("http");
+      const avatarHTML = isImageUrl
+        ? `<img src="${participant.profilePicture}" alt="${participant.fullName}" class="w-full h-full object-cover rounded-full" />`
+        : alias;
+
       return `
       <div 
         class="conversation-item p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 transition-colors"
@@ -51,8 +59,10 @@ function loadConversations() {
       >
         <div class="flex items-center space-x-3">
           <div class="relative">
-            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg font-bold">
-              ${participant.profilePicture}
+            <div class="w-14 h-14 ${
+              isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+            } rounded-full flex items-center justify-center text-white text-lg font-bold overflow-hidden">
+              ${avatarHTML}
             </div>
             ${
               conv.unreadCount > 0
@@ -114,8 +124,30 @@ function openChat(userId) {
 
   currentChatUser = user;
 
+  const alias = user.alias || user.profilePicture;
+  const isImageUrl =
+    user.profilePicture && user.profilePicture.startsWith("http");
+
   // Update chat header
-  document.getElementById("chat-avatar").textContent = user.profilePicture;
+  const chatAvatar = document.getElementById("chat-avatar");
+  if (chatAvatar) {
+    if (isImageUrl) {
+      chatAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      chatAvatar.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-500",
+        "to-purple-500"
+      );
+    } else {
+      chatAvatar.textContent = alias;
+      chatAvatar.classList.add(
+        "bg-gradient-to-br",
+        "from-blue-500",
+        "to-purple-500"
+      );
+    }
+  }
+
   document.getElementById("chat-name").textContent = user.fullName;
   document.getElementById("chat-status").textContent = "Active now";
 
@@ -162,6 +194,14 @@ function loadMessages(userId) {
       ${messages
         .map((msg) => {
           const isSent = msg.senderId === currentUser.id;
+          const sender = getUserById(msg.senderId);
+          const senderAlias = sender?.alias || sender?.profilePicture || "--";
+          const senderIsImageUrl =
+            sender?.profilePicture && sender.profilePicture.startsWith("http");
+          const senderAvatarHTML = senderIsImageUrl
+            ? `<img src="${sender.profilePicture}" alt="${sender.fullName}" class="w-full h-full object-cover rounded-full" />`
+            : senderAlias;
+
           return `
           <div class="flex ${isSent ? "justify-end" : "justify-start"}">
             <div class="flex items-end space-x-2 max-w-md ${
@@ -169,8 +209,12 @@ function loadMessages(userId) {
             }">
               ${
                 !isSent
-                  ? `<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                      ${getUserById(msg.senderId)?.profilePicture || "--"}
+                  ? `<div class="w-8 h-8 ${
+                      senderIsImageUrl
+                        ? ""
+                        : "bg-gradient-to-br from-blue-500 to-purple-500"
+                    } rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 overflow-hidden">
+                      ${senderAvatarHTML}
                     </div>`
                   : ""
               }
@@ -322,22 +366,31 @@ function loadPeopleList() {
   const peopleList = document.getElementById("people-list");
 
   peopleList.innerHTML = allUsers
-    .map(
-      (user) => `
+    .map((user) => {
+      const alias = user.alias || user.profilePicture;
+      const isImageUrl =
+        user.profilePicture && user.profilePicture.startsWith("http");
+      const avatarHTML = isImageUrl
+        ? `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`
+        : alias;
+
+      return `
     <div 
       class="flex items-center space-x-3 p-3 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors person-item"
       data-user-id="${user.id}"
     >
-      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-        ${user.profilePicture}
+      <div class="w-12 h-12 ${
+        isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+      } rounded-full flex items-center justify-center text-white font-bold overflow-hidden">
+        ${avatarHTML}
       </div>
       <div>
         <p class="font-semibold text-gray-900">${user.fullName}</p>
         <p class="text-sm text-gray-500">@${user.username}</p>
       </div>
     </div>
-  `
-    )
+  `;
+    })
     .join("");
 
   // Attach listeners
@@ -372,22 +425,31 @@ function filterPeopleList(query) {
   }
 
   peopleList.innerHTML = filtered
-    .map(
-      (user) => `
+    .map((user) => {
+      const alias = user.alias || user.profilePicture;
+      const isImageUrl =
+        user.profilePicture && user.profilePicture.startsWith("http");
+      const avatarHTML = isImageUrl
+        ? `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`
+        : alias;
+
+      return `
     <div 
       class="flex items-center space-x-3 p-3 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors person-item"
       data-user-id="${user.id}"
     >
-      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-        ${user.profilePicture}
+      <div class="w-12 h-12 ${
+        isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+      } rounded-full flex items-center justify-center text-white font-bold overflow-hidden">
+        ${avatarHTML}
       </div>
       <div>
         <p class="font-semibold text-gray-900">${user.fullName}</p>
         <p class="text-sm text-gray-500">@${user.username}</p>
       </div>
     </div>
-  `
-    )
+  `;
+    })
     .join("");
 
   // Reattach listeners

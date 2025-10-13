@@ -63,14 +63,22 @@ function loadAllFriends() {
 // Create friend card HTML
 function createFriendCard(friend) {
   const rating = friend.rating;
+  const alias = friend.alias || friend.profilePicture;
+  const isImageUrl =
+    friend.profilePicture && friend.profilePicture.startsWith("http");
+  const avatarHTML = isImageUrl
+    ? `<img src="${friend.profilePicture}" alt="${friend.fullName}" class="w-full h-full object-cover rounded-2xl" />`
+    : alias;
 
   return `
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-all duration-200">
       <!-- Friend Header -->
       <div class="flex items-start justify-between mb-4">
         <div class="flex items-center space-x-3">
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
-            ${friend.profilePicture}
+          <div class="w-16 h-16 ${
+            isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+          } rounded-2xl flex items-center justify-center text-white text-2xl font-bold overflow-hidden">
+            ${avatarHTML}
           </div>
           <div>
             <h3 class="font-bold text-gray-900 text-lg">${friend.fullName}</h3>

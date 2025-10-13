@@ -7,10 +7,8 @@ const PREDEFINED_USERS = [
     fullName: "Mehran Akhtar",
     alias: "MA",
     email: "mehran.akhtar@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/32.jpg",
+    coverPhoto: "https://picsum.photos/seed/mehran/1200/400",
     bio: "Software engineer and tech innovator. Building the future one line of code at a time.",
     location: "Karachi, Pakistan",
     joined: "January 2024",
@@ -26,10 +24,8 @@ const PREDEFINED_USERS = [
     fullName: "Fatima Zahra",
     alias: "FZ",
     email: "fatima.zahra@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/44.jpg",
+    coverPhoto: "https://picsum.photos/seed/fatima/1200/400",
     bio: "Digital marketing specialist and content strategist. Helping brands tell their stories.",
     location: "Dubai, UAE",
     joined: "February 2024",
@@ -45,10 +41,8 @@ const PREDEFINED_USERS = [
     fullName: "Abdullah Rahman",
     alias: "AR",
     email: "abdullah.rahman@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/45.jpg",
+    coverPhoto: "https://picsum.photos/seed/abdullah/1200/400",
     bio: "Fitness coach and nutrition expert. Transforming lives through health and wellness.",
     location: "Lahore, Pakistan",
     joined: "March 2024",
@@ -64,10 +58,8 @@ const PREDEFINED_USERS = [
     fullName: "Aisha Malik",
     alias: "AM",
     email: "aisha.malik@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/65.jpg",
+    coverPhoto: "https://picsum.photos/seed/aisha/1200/400",
     bio: "Graphic designer and visual artist. Creating beauty through design and color.",
     location: "Islamabad, Pakistan",
     joined: "January 2024",
@@ -83,10 +75,8 @@ const PREDEFINED_USERS = [
     fullName: "Omar Hassan",
     alias: "OH",
     email: "omar.hassan@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/52.jpg",
+    coverPhoto: "https://picsum.photos/seed/omar/1200/400",
     bio: "Video creator and storyteller. Capturing moments that inspire and connect people.",
     location: "Riyadh, Saudi Arabia",
     joined: "February 2024",
@@ -102,10 +92,8 @@ const PREDEFINED_USERS = [
     fullName: "Zainab Ahmed",
     alias: "ZA",
     email: "zainab.ahmed@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/68.jpg",
+    coverPhoto: "https://picsum.photos/seed/zainab/1200/400",
     bio: "Travel blogger and adventure seeker. Exploring the world one destination at a time.",
     location: "Cairo, Egypt",
     joined: "March 2024",
@@ -119,12 +107,10 @@ const PREDEFINED_USERS = [
     username: "mohammad_ali",
     password: "password123",
     fullName: "Mohammad Ali",
-    alias: "MA",
+    alias: "MAL",
     email: "mohammad.ali@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/43.jpg",
+    coverPhoto: "https://picsum.photos/seed/mohamadali/1200/400",
     bio: "Business consultant and entrepreneur. Helping startups scale and succeed.",
     location: "Doha, Qatar",
     joined: "February 2024",
@@ -140,10 +126,8 @@ const PREDEFINED_USERS = [
     fullName: "Hamza Sheikh",
     alias: "HS",
     email: "hamza.sheikh@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/71.jpg",
+    coverPhoto: "https://picsum.photos/seed/hamza/1200/400",
     bio: "Photographer and visual storyteller. Capturing life's beautiful moments through my lens.",
     location: "Multan, Pakistan",
     joined: "January 2024",
@@ -159,10 +143,8 @@ const PREDEFINED_USERS = [
     fullName: "Mariam Noor",
     alias: "MN",
     email: "mariam.noor@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/72.jpg",
+    coverPhoto: "https://picsum.photos/seed/mariam/1200/400",
     bio: "Tech educator and coding mentor. Empowering the next generation of developers.",
     location: "Amman, Jordan",
     joined: "March 2024",
@@ -178,10 +160,8 @@ const PREDEFINED_USERS = [
     fullName: "Yusuf Ibrahim",
     alias: "YI",
     email: "yusuf.ibrahim@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/83.jpg",
+    coverPhoto: "https://picsum.photos/seed/yusuf/1200/400",
     bio: "Data scientist and AI researcher. Working on machine learning solutions for social good.",
     location: "Peshawar, Pakistan",
     joined: "February 2024",
@@ -197,10 +177,8 @@ const PREDEFINED_USERS = [
     fullName: "Sarah Khan",
     alias: "SK",
     email: "sarah.khan@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/81.jpg",
+    coverPhoto: "https://picsum.photos/seed/sarah/1200/400",
     bio: "Fashion designer and style consultant. Bringing elegance and tradition together.",
     location: "Faisalabad, Pakistan",
     joined: "January 2024",
@@ -216,10 +194,8 @@ const PREDEFINED_USERS = [
     fullName: "Wei Chen",
     alias: "WC",
     email: "wei.chen@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1542190891-2093d38760f2?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/75.jpg",
+    coverPhoto: "https://picsum.photos/seed/weichen/1200/400",
     bio: "Software architect and cloud computing specialist. Building scalable systems.",
     location: "Beijing, China",
     joined: "March 2024",
@@ -235,10 +211,8 @@ const PREDEFINED_USERS = [
     fullName: "Li Ming",
     alias: "LM",
     email: "li.ming@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1507081323647-4d250478b919?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/90.jpg",
+    coverPhoto: "https://picsum.photos/seed/liming/1200/400",
     bio: "Entrepreneur and startup founder. Innovation is my passion and success is my goal.",
     location: "Shanghai, China",
     joined: "February 2024",
@@ -254,10 +228,8 @@ const PREDEFINED_USERS = [
     fullName: "Priya Sharma",
     alias: "PS",
     email: "priya.sharma@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/85.jpg",
+    coverPhoto: "https://picsum.photos/seed/priya/1200/400",
     bio: "Yoga instructor and wellness coach. Finding balance and peace through mindful living.",
     location: "Mumbai, India",
     joined: "January 2024",
@@ -273,10 +245,8 @@ const PREDEFINED_USERS = [
     fullName: "Raj Patel",
     alias: "RP",
     email: "raj.patel@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/92.jpg",
+    coverPhoto: "https://picsum.photos/seed/raj/1200/400",
     bio: "Digital artist and animator. Creating visual experiences that inspire and amaze.",
     location: "Bangalore, India",
     joined: "March 2024",
@@ -292,10 +262,8 @@ const PREDEFINED_USERS = [
     fullName: "Sompong Rattana",
     alias: "SR",
     email: "sompong.thai@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1504593811423-6dd665756598?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/88.jpg",
+    coverPhoto: "https://picsum.photos/seed/sompong/1200/400",
     bio: "Chef and culinary artist. Bringing authentic Thai flavors to the world.",
     location: "Bangkok, Thailand",
     joined: "February 2024",
@@ -311,10 +279,8 @@ const PREDEFINED_USERS = [
     fullName: "David Miller",
     alias: "DM",
     email: "david.miller@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/62.jpg",
+    coverPhoto: "https://picsum.photos/seed/david/1200/400",
     bio: "Environmental scientist working on climate change solutions and sustainability.",
     location: "Toronto, Canada",
     joined: "January 2024",
@@ -328,12 +294,10 @@ const PREDEFINED_USERS = [
     username: "sofia_rodriguez",
     password: "password123",
     fullName: "Sofia Rodriguez",
-    alias: "SR",
+    alias: "SRD",
     email: "sofia.rodriguez@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/79.jpg",
+    coverPhoto: "https://picsum.photos/seed/sofia/1200/400",
     bio: "Journalist and human rights advocate. Telling stories that need to be heard.",
     location: "Madrid, Spain",
     joined: "March 2024",
@@ -349,10 +313,8 @@ const PREDEFINED_USERS = [
     fullName: "Ahmed Farouk",
     alias: "AF",
     email: "ahmed.farouk@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/men/67.jpg",
+    coverPhoto: "https://picsum.photos/seed/ahmed/1200/400",
     bio: "Medical doctor and healthcare innovator. Committed to improving patient care.",
     location: "Alexandria, Egypt",
     joined: "February 2024",
@@ -368,10 +330,8 @@ const PREDEFINED_USERS = [
     fullName: "Emma Watson",
     alias: "EW",
     email: "emma.watson@connecfriend.com",
-    profilePicture:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
-    coverPhoto:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=400&fit=crop",
+    profilePicture: "https://randomuser.me/api/portraits/women/95.jpg",
+    coverPhoto: "https://picsum.photos/seed/emma/1200/400",
     bio: "Education reformer and literacy advocate. Every child deserves access to quality education.",
     location: "London, UK",
     joined: "January 2024",
