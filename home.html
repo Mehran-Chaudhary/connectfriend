@@ -11,6 +11,15 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <style>
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
   </head>
   <body class="font-['Inter'] antialiased bg-gray-50">
     <!-- Main Container -->
@@ -359,7 +368,7 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                          d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
                         ></path>
                       </svg>
                       <span>Saved Posts</span>
@@ -383,6 +392,25 @@
                       </svg>
                       <span>Groups</span>
                     </a>
+                    <a
+                      href="#"
+                      class="flex items-center space-x-3 text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                      <span>Events</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -390,6 +418,130 @@
 
             <!-- Main Feed -->
             <div class="lg:col-span-6 space-y-6">
+              <!-- Stories Section -->
+              <div
+                class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4"
+              >
+                <div
+                  class="flex items-center space-x-4 overflow-x-auto pb-2 scrollbar-hide"
+                >
+                  <!-- Create Story -->
+                  <div class="flex-shrink-0 w-28 cursor-pointer group">
+                    <div
+                      class="relative h-44 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden mb-2"
+                    >
+                      <div
+                        id="story-avatar"
+                        class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-3xl font-bold opacity-50"
+                      >
+                        --
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 bg-white p-3 group-hover:bg-gray-50 transition-colors"
+                      >
+                        <div
+                          class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mx-auto"
+                        >
+                          <svg
+                            class="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="3"
+                              d="M12 4v16m8-8H4"
+                            ></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="text-xs text-center font-medium text-gray-900">
+                      Create Story
+                    </p>
+                  </div>
+
+                  <!-- Friend Stories -->
+                  <div class="flex-shrink-0 w-28 cursor-pointer">
+                    <div
+                      class="relative h-44 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl overflow-hidden mb-2 ring-4 ring-blue-500"
+                    >
+                      <div
+                        class="absolute top-2 left-2 w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full border-4 border-white flex items-center justify-center text-white text-sm font-bold"
+                      >
+                        SS
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"
+                      >
+                        <p class="text-white text-xs font-semibold">
+                          Sarah Smith
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex-shrink-0 w-28 cursor-pointer">
+                    <div
+                      class="relative h-44 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-2xl overflow-hidden mb-2 ring-4 ring-blue-500"
+                    >
+                      <div
+                        class="absolute top-2 left-2 w-10 h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-full border-4 border-white flex items-center justify-center text-white text-sm font-bold"
+                      >
+                        MW
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"
+                      >
+                        <p class="text-white text-xs font-semibold">
+                          Mike Wilson
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex-shrink-0 w-28 cursor-pointer">
+                    <div
+                      class="relative h-44 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl overflow-hidden mb-2"
+                    >
+                      <div
+                        class="absolute top-2 left-2 w-10 h-10 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full border-4 border-white flex items-center justify-center text-white text-sm font-bold"
+                      >
+                        EJ
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"
+                      >
+                        <p class="text-white text-xs font-semibold">
+                          Emma Johnson
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex-shrink-0 w-28 cursor-pointer">
+                    <div
+                      class="relative h-44 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl overflow-hidden mb-2"
+                    >
+                      <div
+                        class="absolute top-2 left-2 w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full border-4 border-white flex items-center justify-center text-white text-sm font-bold"
+                      >
+                        AB
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3"
+                      >
+                        <p class="text-white text-xs font-semibold">
+                          Alex Brown
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Create Post Card -->
               <div
                 class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
@@ -405,18 +557,18 @@
                     type="text"
                     id="post-input"
                     placeholder="What's on your mind?"
-                    class="flex-1 px-4 py-3 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                    class="flex-1 px-4 py-3 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer hover:bg-gray-200 transition-colors"
                     readonly
                   />
                 </div>
                 <div
-                  class="flex items-center justify-between pt-4 border-t border-gray-200"
+                  class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200"
                 >
                   <button
-                    class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    class="flex items-center justify-center space-x-2 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                   >
                     <svg
-                      class="w-6 h-6 text-red-500"
+                      class="w-5 h-5 text-red-500"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -426,15 +578,13 @@
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    <span class="text-sm font-medium text-gray-700"
-                      >Photo/Video</span
-                    >
+                    <span class="text-sm font-medium text-gray-700">Photo</span>
                   </button>
                   <button
-                    class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    class="flex items-center justify-center space-x-2 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                   >
                     <svg
-                      class="w-6 h-6 text-yellow-500"
+                      class="w-5 h-5 text-yellow-500"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -446,6 +596,24 @@
                     </svg>
                     <span class="text-sm font-medium text-gray-700"
                       >Feeling</span
+                    >
+                  </button>
+                  <button
+                    class="flex items-center justify-center space-x-2 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                  >
+                    <svg
+                      class="w-5 h-5 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm font-medium text-gray-700"
+                      >Check In</span
                     >
                   </button>
                 </div>
@@ -461,6 +629,15 @@
                   <p class="text-gray-500 mt-4">Loading feed...</p>
                 </div>
               </div>
+
+              <!-- Load More -->
+              <div class="text-center py-8">
+                <button
+                  class="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 hover:border-blue-600 hover:text-blue-600 transition-all duration-200"
+                >
+                  Load More Posts
+                </button>
+              </div>
             </div>
 
             <!-- Right Sidebar - Friend Requests & Suggestions -->
@@ -473,13 +650,87 @@
                   <div class="flex items-center justify-between mb-4">
                     <h3 class="font-bold text-gray-900">Friend Requests</h3>
                     <span
-                      class="text-sm text-blue-600 font-semibold cursor-pointer"
+                      class="text-sm text-blue-600 font-semibold cursor-pointer hover:underline"
                       >See All</span
                     >
                   </div>
-                  <div class="space-y-4" id="friend-requests">
-                    <div class="text-center text-gray-400 text-sm py-4">
-                      No pending requests
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <div
+                        class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
+                      >
+                        JR
+                      </div>
+                      <div class="flex-1">
+                        <p class="text-sm font-semibold text-gray-900">
+                          Jessica Rodriguez
+                        </p>
+                        <p class="text-xs text-gray-500">2 mutual friends</p>
+                      </div>
+                    </div>
+                    <div class="flex space-x-2">
+                      <button
+                        class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        class="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-300 transition-colors"
+                      >
+                        Decline
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- People You May Know -->
+                <div
+                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+                >
+                  <h3 class="font-bold text-gray-900 mb-4">
+                    People You May Know
+                  </h3>
+                  <div class="space-y-4">
+                    <div>
+                      <div class="flex items-center space-x-3 mb-3">
+                        <div
+                          class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center text-white font-bold"
+                        >
+                          LM
+                        </div>
+                        <div class="flex-1">
+                          <p class="text-sm font-semibold text-gray-900">
+                            Lisa Martinez
+                          </p>
+                          <p class="text-xs text-gray-500">5 mutual friends</p>
+                        </div>
+                      </div>
+                      <button
+                        class="w-full px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-semibold hover:bg-blue-100 transition-colors"
+                      >
+                        Add Friend
+                      </button>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-200">
+                      <div class="flex items-center space-x-3 mb-3">
+                        <div
+                          class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold"
+                        >
+                          DT
+                        </div>
+                        <div class="flex-1">
+                          <p class="text-sm font-semibold text-gray-900">
+                            David Taylor
+                          </p>
+                          <p class="text-xs text-gray-500">3 mutual friends</p>
+                        </div>
+                      </div>
+                      <button
+                        class="w-full px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-semibold hover:bg-blue-100 transition-colors"
+                      >
+                        Add Friend
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -490,7 +741,7 @@
                 >
                   <h3 class="font-bold text-gray-900 mb-4">Online Friends</h3>
                   <div class="space-y-3" id="online-friends">
-                    <!-- Will be populated with friends -->
+                    <!-- Will be populated -->
                   </div>
                 </div>
 
@@ -498,25 +749,59 @@
                 <div
                   class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
                 >
-                  <h3 class="font-bold text-gray-900 mb-4">Trending</h3>
-                  <div class="space-y-3">
-                    <div>
+                  <h3 class="font-bold text-gray-900 mb-4">Trending Topics</h3>
+                  <div class="space-y-2">
+                    <a
+                      href="#"
+                      class="block hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                    >
+                      <p class="text-sm font-semibold text-gray-900">
+                        #ConnecFriend
+                      </p>
+                      <p class="text-xs text-gray-500">5.2K posts today</p>
+                    </a>
+                    <a
+                      href="#"
+                      class="block hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                    >
                       <p class="text-sm font-semibold text-gray-900">
                         #SocialMedia
                       </p>
                       <p class="text-xs text-gray-500">2.5K posts</p>
-                    </div>
-                    <div>
+                    </a>
+                    <a
+                      href="#"
+                      class="block hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                    >
                       <p class="text-sm font-semibold text-gray-900">
                         #Technology
                       </p>
                       <p class="text-xs text-gray-500">1.8K posts</p>
-                    </div>
-                    <div>
+                    </a>
+                    <a
+                      href="#"
+                      class="block hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                    >
                       <p class="text-sm font-semibold text-gray-900">#Travel</p>
                       <p class="text-xs text-gray-500">1.2K posts</p>
-                    </div>
+                    </a>
                   </div>
+                </div>
+
+                <!-- Footer Links -->
+                <div
+                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+                >
+                  <div class="flex flex-wrap gap-2 text-xs text-gray-500">
+                    <a href="#" class="hover:underline">About</a>
+                    <span>•</span>
+                    <a href="#" class="hover:underline">Help</a>
+                    <span>•</span>
+                    <a href="#" class="hover:underline">Privacy</a>
+                    <span>•</span>
+                    <a href="#" class="hover:underline">Terms</a>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-3">© 2025 ConnecFriend</p>
                 </div>
               </div>
             </div>
@@ -568,7 +853,7 @@
               </h3>
               <select
                 id="post-visibility"
-                class="text-sm text-gray-600 border-none focus:ring-0 cursor-pointer"
+                class="text-sm text-gray-600 border-none focus:ring-0 cursor-pointer bg-gray-50 rounded px-2 py-1"
               >
                 <option value="public">🌍 Public</option>
                 <option value="friends">👥 Friends</option>
@@ -586,7 +871,7 @@
 
           <div
             id="custom-share-options"
-            class="hidden mt-4 p-4 bg-gray-50 rounded-xl"
+            class="hidden mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl"
           >
             <p class="text-sm font-semibold text-gray-900 mb-3">
               Share with specific friends:

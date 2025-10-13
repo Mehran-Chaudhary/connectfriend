@@ -42,17 +42,30 @@ function displayUserInfo(user) {
   document.getElementById("create-post-avatar").textContent =
     user.profilePicture;
 
+  // Story avatar
+  const storyAvatar = document.getElementById("story-avatar");
+  if (storyAvatar) {
+    storyAvatar.textContent = user.profilePicture;
+  }
+
   // Modal avatar
-  document.getElementById("modal-avatar").textContent = user.profilePicture;
-  document.getElementById("modal-name").textContent = user.fullName;
+  const modalAvatar = document.getElementById("modal-avatar");
+  const modalName = document.getElementById("modal-name");
+  if (modalAvatar) modalAvatar.textContent = user.profilePicture;
+  if (modalName) modalName.textContent = user.fullName;
 }
 
 // Load news feed posts
 function loadNewsFeed() {
+  console.log("Loading news feed...");
+
   const feedPosts = getNewsFeedPosts();
+  console.log("Feed posts:", feedPosts);
+
   const newsFeed = document.getElementById("news-feed");
 
   if (feedPosts.length === 0) {
+    console.log("No posts found");
     newsFeed.innerHTML = `
       <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
         <svg class="w-20 h-20 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
