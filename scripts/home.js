@@ -26,32 +26,83 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Display user information
 function displayUserInfo(user) {
+  const alias = user.alias || user.profilePicture;
+  const isImageUrl =
+    user.profilePicture && user.profilePicture.startsWith("http");
+
   // Header avatar
   const headerAvatar = document.getElementById("header-avatar");
   if (headerAvatar) {
-    headerAvatar.textContent = user.profilePicture;
+    if (isImageUrl) {
+      headerAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      headerAvatar.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      headerAvatar.textContent = alias;
+    }
   }
 
   // Sidebar user info
-  document.getElementById("sidebar-avatar").textContent = user.profilePicture;
+  const sidebarAvatar = document.getElementById("sidebar-avatar");
+  if (sidebarAvatar) {
+    if (isImageUrl) {
+      sidebarAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      sidebarAvatar.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      sidebarAvatar.textContent = alias;
+    }
+  }
   document.getElementById("sidebar-name").textContent = user.fullName;
   document.getElementById("sidebar-username").textContent = `@${user.username}`;
   document.getElementById("sidebar-friends").textContent = user.friendsCount;
 
   // Create post avatar
-  document.getElementById("create-post-avatar").textContent =
-    user.profilePicture;
+  const createPostAvatar = document.getElementById("create-post-avatar");
+  if (createPostAvatar) {
+    if (isImageUrl) {
+      createPostAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      createPostAvatar.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      createPostAvatar.textContent = alias;
+    }
+  }
 
   // Story avatar
   const storyAvatar = document.getElementById("story-avatar");
   if (storyAvatar) {
-    storyAvatar.textContent = user.profilePicture;
+    if (isImageUrl) {
+      storyAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover" />`;
+    } else {
+      storyAvatar.textContent = alias;
+    }
   }
 
   // Modal avatar
   const modalAvatar = document.getElementById("modal-avatar");
   const modalName = document.getElementById("modal-name");
-  if (modalAvatar) modalAvatar.textContent = user.profilePicture;
+  if (modalAvatar) {
+    if (isImageUrl) {
+      modalAvatar.innerHTML = `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`;
+      modalAvatar.classList.remove(
+        "bg-gradient-to-br",
+        "from-blue-600",
+        "to-purple-600"
+      );
+    } else {
+      modalAvatar.textContent = alias;
+    }
+  }
   if (modalName) modalName.textContent = user.fullName;
 }
 
@@ -95,21 +146,10 @@ function createPostHTML(post) {
   const userReaction = getUserReaction(post.id);
   const timeAgo = formatTimeAgo(post.timestamp);
 
-  // Gradient classes for images
-  const gradients = [
-    "from-blue-300 via-purple-300 to-pink-300",
-    "from-green-300 via-blue-300 to-purple-300",
-    "from-orange-300 via-red-300 to-pink-300",
-    "from-yellow-300 via-green-300 to-blue-300",
-  ];
-  const gradientClass =
-    post.imageUrl === "gradient-1"
-      ? gradients[0]
-      : post.imageUrl === "gradient-2"
-      ? gradients[1]
-      : post.imageUrl === "gradient-3"
-      ? gradients[2]
-      : gradients[3];
+  const authorAlias = post.author.alias || post.author.profilePicture;
+  const authorIsImageUrl =
+    post.author.profilePicture && post.author.profilePicture.startsWith("http");
+  const postIsImageUrl = post.imageUrl && post.imageUrl.startsWith("http");
 
   const visibilityIcon =
     post.visibility === "public"
@@ -124,13 +164,21 @@ function createPostHTML(post) {
       ? "Friends"
       : "Custom";
 
+  const authorAvatarHTML = authorIsImageUrl
+    ? `<img src="${post.author.profilePicture}" alt="${post.author.fullName}" class="w-full h-full object-cover rounded-full" />`
+    : authorAlias;
+
   return `
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6 post-card">
       <!-- Post Header -->
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-lg font-bold">
-            ${post.author.profilePicture}
+          <div class="w-12 h-12 ${
+            authorIsImageUrl
+              ? ""
+              : "bg-gradient-to-br from-blue-600 to-purple-600"
+          } rounded-full flex items-center justify-center text-white text-lg font-bold overflow-hidden">
+            ${authorAvatarHTML}
           </div>
           <div>
             <h3 class="font-semibold text-gray-900">${post.author.fullName}</h3>
@@ -154,7 +202,9 @@ function createPostHTML(post) {
       <!-- Post Image (if exists) -->
       ${
         post.imageUrl
-          ? `<div class="rounded-xl overflow-hidden mb-4 h-96 bg-gradient-to-br ${gradientClass}"></div>`
+          ? postIsImageUrl
+            ? `<div class="rounded-xl overflow-hidden mb-4"><img src="${post.imageUrl}" alt="Post image" class="w-full h-auto object-cover" /></div>`
+            : `<div class="rounded-xl overflow-hidden mb-4 h-96 bg-gradient-to-br from-blue-300 via-purple-300 to-pink-300"></div>`
           : ""
       }
 
@@ -280,22 +330,33 @@ function loadOnlineFriends() {
 
   onlineFriends.innerHTML = friends
     .slice(0, 5)
-    .map(
-      (friend) => `
+    .map((friend) => {
+      const alias = friend.alias || friend.profilePicture;
+      const isImageUrl =
+        friend.profilePicture && friend.profilePicture.startsWith("http");
+      const avatarHTML = isImageUrl
+        ? `<img src="${friend.profilePicture}" alt="${friend.fullName}" class="w-full h-full object-cover rounded-full" />`
+        : alias;
+
+      return `
     <div class="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
       <div class="relative">
-        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-          ${friend.profilePicture}
+        <div class="w-10 h-10 ${
+          isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+        } rounded-full flex items-center justify-center text-white text-sm font-bold overflow-hidden">
+          ${avatarHTML}
         </div>
         <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
       </div>
       <div class="flex-1 min-w-0">
-        <p class="text-sm font-medium text-gray-900 truncate">${friend.fullName}</p>
+        <p class="text-sm font-medium text-gray-900 truncate">${
+          friend.fullName
+        }</p>
         <p class="text-xs text-gray-500 truncate">Online</p>
       </div>
     </div>
-  `
-    )
+  `;
+    })
     .join("");
 }
 
@@ -396,17 +457,28 @@ function loadFriendsForCustomShare() {
   if (!friendsListCheckbox) return;
 
   friendsListCheckbox.innerHTML = friends
-    .map(
-      (friend) => `
+    .map((friend) => {
+      const alias = friend.alias || friend.profilePicture;
+      const isImageUrl =
+        friend.profilePicture && friend.profilePicture.startsWith("http");
+      const avatarHTML = isImageUrl
+        ? `<img src="${friend.profilePicture}" alt="${friend.fullName}" class="w-full h-full object-cover rounded-full" />`
+        : alias;
+
+      return `
     <label class="flex items-center space-x-3 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
-      <input type="checkbox" value="${friend.id}" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-      <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-        ${friend.profilePicture}
+      <input type="checkbox" value="${
+        friend.id
+      }" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+      <div class="w-8 h-8 ${
+        isImageUrl ? "" : "bg-gradient-to-br from-blue-500 to-purple-500"
+      } rounded-full flex items-center justify-center text-white text-xs font-bold overflow-hidden">
+        ${avatarHTML}
       </div>
       <span class="text-sm text-gray-900">${friend.fullName}</span>
     </label>
-  `
-    )
+  `;
+    })
     .join("");
 }
 

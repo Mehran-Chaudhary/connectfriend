@@ -6,8 +6,9 @@ const SAMPLE_POSTS = [
     id: 1,
     userId: 2,
     content:
-      "Just finished an amazing hike! The view from the top was absolutely breathtaking 🏔️ #NatureLover #Adventure",
-    imageUrl: "gradient-1",
+      "Just finished an incredible marketing campaign for our client in Dubai. The results exceeded all expectations! Grateful for this opportunity to make an impact.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
     timestamp: new Date(Date.now() - 7200000).toISOString(), // 2 hours ago
     likes: [],
     dislikes: [],
@@ -18,8 +19,9 @@ const SAMPLE_POSTS = [
     id: 2,
     userId: 3,
     content:
-      "New workout routine is paying off! 💪 Feeling stronger every day. Remember, consistency is key! #FitnessJourney #HealthyLifestyle",
-    imageUrl: null,
+      "Morning workout session complete. The discipline you build in the gym translates to every aspect of life. Stay consistent, stay strong.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop",
     timestamp: new Date(Date.now() - 14400000).toISOString(), // 4 hours ago
     likes: [],
     dislikes: [],
@@ -30,8 +32,9 @@ const SAMPLE_POSTS = [
     id: 3,
     userId: 4,
     content:
-      "Just completed this new design project! So proud of how it turned out 🎨✨ What do you think?",
-    imageUrl: "gradient-2",
+      "Finished designing the new branding identity for a local business in Islamabad. It's amazing how colors and shapes can tell a powerful story. What do you think of this color palette?",
+    imageUrl:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
     timestamp: new Date(Date.now() - 21600000).toISOString(), // 6 hours ago
     likes: [],
     dislikes: [],
@@ -42,8 +45,9 @@ const SAMPLE_POSTS = [
     id: 4,
     userId: 5,
     content:
-      "Behind the scenes of my latest video! This one was so much fun to create 🎬 Coming soon to my channel!",
-    imageUrl: "gradient-3",
+      "Behind the scenes from today's video shoot in Riyadh. The production quality keeps getting better with each project. Can't wait to share the final result with everyone!",
+    imageUrl:
+      "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&h=600&fit=crop",
     timestamp: new Date(Date.now() - 43200000).toISOString(), // 12 hours ago
     likes: [],
     dislikes: [],
@@ -52,11 +56,76 @@ const SAMPLE_POSTS = [
   },
   {
     id: 5,
-    userId: 2,
+    userId: 6,
     content:
-      "Coffee and coding on a rainy day ☕💻 Perfect combination! What's your favorite way to spend a rainy day?",
-    imageUrl: null,
+      "Standing at the edge of the world in the Egyptian desert. Travel teaches us that home is not a place, but a feeling. Every journey brings new perspectives.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1547234935-80c7145ec969?w=800&h=600&fit=crop",
     timestamp: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+    likes: [],
+    dislikes: [],
+    comments: [],
+    visibility: "public",
+  },
+  {
+    id: 6,
+    userId: 8,
+    content:
+      "Golden hour photography session in the beautiful valleys of Multan. Nature provides the perfect canvas, we just need to capture it at the right moment.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    timestamp: new Date(Date.now() - 129600000).toISOString(), // 1.5 days ago
+    likes: [],
+    dislikes: [],
+    comments: [],
+    visibility: "public",
+  },
+  {
+    id: 7,
+    userId: 9,
+    content:
+      "Teaching the next generation of coders at our coding bootcamp in Amman. Every student has the potential to create something amazing. The future of tech is bright!",
+    imageUrl:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
+    timestamp: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+    likes: [],
+    dislikes: [],
+    comments: [],
+    visibility: "public",
+  },
+  {
+    id: 8,
+    userId: 12,
+    content:
+      "Deployed our new cloud infrastructure today. Scalability achieved with 99.9% uptime. The architecture is finally where we need it to be for the next phase of growth.",
+    imageUrl: null,
+    timestamp: new Date(Date.now() - 216000000).toISOString(), // 2.5 days ago
+    likes: [],
+    dislikes: [],
+    comments: [],
+    visibility: "public",
+  },
+  {
+    id: 9,
+    userId: 14,
+    content:
+      "Morning yoga session by the sea in Mumbai. Finding peace and balance is essential in our fast-paced world. Take time to breathe and be present.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop",
+    timestamp: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
+    likes: [],
+    dislikes: [],
+    comments: [],
+    visibility: "public",
+  },
+  {
+    id: 10,
+    userId: 15,
+    content:
+      "Working on a new animation project that blends traditional art with digital innovation. The fusion of old and new creates something truly special.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=600&fit=crop",
+    timestamp: new Date(Date.now() - 302400000).toISOString(), // 3.5 days ago
     likes: [],
     dislikes: [],
     comments: [],

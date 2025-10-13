@@ -4,15 +4,15 @@
 const SAMPLE_CONVERSATIONS = [
   {
     id: 1,
-    participantId: 2, // Sarah Smith
-    lastMessage: "That sounds great! Let's do it!",
+    participantId: 2, // Fatima Zahra
+    lastMessage: "That sounds great! Let's schedule it for next week.",
     lastMessageTime: new Date(Date.now() - 300000).toISOString(), // 5 min ago
     unreadCount: 2,
     isTyping: false,
   },
   {
     id: 2,
-    participantId: 3, // Mike Wilson
+    participantId: 3, // Abdullah Rahman
     lastMessage: "Thanks for the workout tips!",
     lastMessageTime: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
     unreadCount: 0,
@@ -20,17 +20,25 @@ const SAMPLE_CONVERSATIONS = [
   },
   {
     id: 3,
-    participantId: 4, // Emma Johnson
-    lastMessage: "Love the new design! 🎨",
+    participantId: 4, // Aisha Malik
+    lastMessage: "Love the new design work!",
     lastMessageTime: new Date(Date.now() - 7200000).toISOString(), // 2 hours ago
     unreadCount: 1,
     isTyping: true,
   },
   {
     id: 4,
-    participantId: 5, // Alex Brown
+    participantId: 5, // Omar Hassan
     lastMessage: "When is the next video coming out?",
     lastMessageTime: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+    unreadCount: 0,
+    isTyping: false,
+  },
+  {
+    id: 5,
+    participantId: 8, // Hamza Sheikh
+    lastMessage: "The photography session was amazing!",
+    lastMessageTime: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
     unreadCount: 0,
     isTyping: false,
   },
@@ -38,12 +46,12 @@ const SAMPLE_CONVERSATIONS = [
 
 const SAMPLE_MESSAGES = {
   2: [
-    // Conversation with Sarah Smith
+    // Conversation with Fatima Zahra
     {
       id: 1,
       senderId: 1,
       receiverId: 2,
-      content: "Hey Sarah! How are you?",
+      content: "Hey Fatima! How's the marketing campaign going?",
       timestamp: new Date(Date.now() - 7200000).toISOString(),
       read: true,
     },
@@ -51,7 +59,7 @@ const SAMPLE_MESSAGES = {
       id: 2,
       senderId: 2,
       receiverId: 1,
-      content: "Hi! I'm great, thanks! How about you?",
+      content: "Hi Mehran! It's going really well, thanks for asking!",
       timestamp: new Date(Date.now() - 7000000).toISOString(),
       read: true,
     },
@@ -59,7 +67,7 @@ const SAMPLE_MESSAGES = {
       id: 3,
       senderId: 1,
       receiverId: 2,
-      content: "Doing well! Want to grab coffee this weekend?",
+      content: "Would love to collaborate on a tech project sometime",
       timestamp: new Date(Date.now() - 6800000).toISOString(),
       read: true,
     },
@@ -67,7 +75,7 @@ const SAMPLE_MESSAGES = {
       id: 4,
       senderId: 2,
       receiverId: 1,
-      content: "That sounds great! Let's do it!",
+      content: "That sounds great! Let's schedule it for next week.",
       timestamp: new Date(Date.now() - 300000).toISOString(),
       read: false,
     },
@@ -75,18 +83,18 @@ const SAMPLE_MESSAGES = {
       id: 5,
       senderId: 2,
       receiverId: 1,
-      content: "How about Saturday at 3 PM?",
+      content: "How about Tuesday afternoon?",
       timestamp: new Date(Date.now() - 240000).toISOString(),
       read: false,
     },
   ],
   3: [
-    // Conversation with Mike Wilson
+    // Conversation with Abdullah Rahman
     {
       id: 6,
       senderId: 1,
       receiverId: 3,
-      content: "Hey Mike! Can you share that workout routine?",
+      content: "Hey Abdullah! Can you share that workout routine?",
       timestamp: new Date(Date.now() - 7200000).toISOString(),
       read: true,
     },
@@ -108,12 +116,12 @@ const SAMPLE_MESSAGES = {
     },
   ],
   4: [
-    // Conversation with Emma Johnson
+    // Conversation with Aisha Malik
     {
       id: 9,
       senderId: 4,
       receiverId: 1,
-      content: "Check out this new design I made!",
+      content: "Check out this new design I made for the client!",
       timestamp: new Date(Date.now() - 10800000).toISOString(),
       read: true,
     },
@@ -121,19 +129,30 @@ const SAMPLE_MESSAGES = {
       id: 10,
       senderId: 1,
       receiverId: 4,
-      content: "Love the new design! 🎨",
+      content: "Love the new design work!",
       timestamp: new Date(Date.now() - 7200000).toISOString(),
       read: true,
     },
   ],
   5: [
-    // Conversation with Alex Brown
+    // Conversation with Omar Hassan
     {
       id: 11,
       senderId: 5,
       receiverId: 1,
       content: "When is the next video coming out?",
       timestamp: new Date(Date.now() - 86400000).toISOString(),
+      read: true,
+    },
+  ],
+  8: [
+    // Conversation with Hamza Sheikh
+    {
+      id: 12,
+      senderId: 8,
+      receiverId: 1,
+      content: "The photography session was amazing!",
+      timestamp: new Date(Date.now() - 172800000).toISOString(),
       read: true,
     },
   ],
