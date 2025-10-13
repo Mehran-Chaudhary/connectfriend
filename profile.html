@@ -208,10 +208,37 @@
         <div class="bg-white border-b border-gray-200">
           <!-- Cover Photo -->
           <div
-            class="h-48 md:h-64 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
-          ></div>
+            class="h-48 md:h-64 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 relative"
+          >
+            <button
+              class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-2"
+            >
+              <svg
+                class="w-4 h-4 text-gray-700"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              <span class="text-sm font-medium text-gray-700"
+                >Change Cover</span
+              >
+            </button>
+          </div>
 
-          <div class="max-w-5xl mx-auto px-6 pb-6">
+          <div class="max-w-6xl mx-auto px-6 pb-6">
             <!-- Profile Picture & Info -->
             <div
               class="flex flex-col md:flex-row md:items-end md:space-x-6 -mt-16 md:-mt-20"
@@ -224,6 +251,29 @@
                 >
                   --
                 </div>
+                <button
+                  class="absolute bottom-2 right-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-700"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                  </svg>
+                </button>
               </div>
 
               <!-- User Info -->
@@ -242,140 +292,600 @@
                       @username
                     </p>
                   </div>
-                  <button
-                    class="mt-4 md:mt-0 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    Edit Profile
-                  </button>
+                  <div class="flex space-x-3 mt-4 md:mt-0">
+                    <button
+                      class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      Edit Profile
+                    </button>
+                    <button
+                      class="px-6 py-2.5 bg-white border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-200"
+                    >
+                      Share Profile
+                    </button>
+                  </div>
                 </div>
 
                 <!-- Stats -->
-                <div class="flex items-center space-x-8 mt-4">
-                  <div>
+                <div class="flex items-center space-x-8 mt-6">
+                  <div class="text-center">
                     <span
                       id="posts-count"
-                      class="text-2xl font-bold text-gray-900"
+                      class="text-2xl font-bold text-gray-900 block"
                       >0</span
                     >
-                    <span class="text-gray-600 ml-1">Posts</span>
+                    <span class="text-gray-600 text-sm">Posts</span>
                   </div>
-                  <div>
+                  <div class="text-center">
                     <span
                       id="friends-count"
-                      class="text-2xl font-bold text-gray-900"
+                      class="text-2xl font-bold text-gray-900 block"
                       >0</span
                     >
-                    <span class="text-gray-600 ml-1">Friends</span>
+                    <span class="text-gray-600 text-sm">Friends</span>
+                  </div>
+                  <div class="text-center">
+                    <span class="text-2xl font-bold text-gray-900 block"
+                      >1.2K</span
+                    >
+                    <span class="text-gray-600 text-sm">Followers</span>
+                  </div>
+                  <div class="text-center">
+                    <span class="text-2xl font-bold text-gray-900 block"
+                      >892</span
+                    >
+                    <span class="text-gray-600 text-sm">Following</span>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="flex space-x-6 mt-6 border-b border-gray-200">
+              <button
+                class="pb-4 px-2 border-b-2 border-blue-600 text-blue-600 font-semibold"
+              >
+                Timeline
+              </button>
+              <button
+                class="pb-4 px-2 border-b-2 border-transparent text-gray-600 font-medium hover:text-gray-900"
+              >
+                About
+              </button>
+              <button
+                class="pb-4 px-2 border-b-2 border-transparent text-gray-600 font-medium hover:text-gray-900"
+              >
+                Friends
+              </button>
+              <button
+                class="pb-4 px-2 border-b-2 border-transparent text-gray-600 font-medium hover:text-gray-900"
+              >
+                Photos
+              </button>
+              <button
+                class="pb-4 px-2 border-b-2 border-transparent text-gray-600 font-medium hover:text-gray-900"
+              >
+                More
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Profile Content -->
-        <div class="max-w-5xl mx-auto px-6 py-8">
+        <div class="max-w-6xl mx-auto px-6 py-8">
           <div class="grid lg:grid-cols-3 gap-6">
-            <!-- Left Column - About -->
+            <!-- Left Column - Info & About -->
             <div class="lg:col-span-1 space-y-6">
-              <!-- About Card -->
+              <!-- Intro Card -->
               <div
                 class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
               >
-                <h2 class="text-xl font-bold text-gray-900 mb-4">About</h2>
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Intro</h2>
                 <div class="space-y-4">
-                  <div class="flex items-start space-x-3">
-                    <svg
-                      class="w-5 h-5 text-gray-400 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                    <div>
-                      <p class="text-sm text-gray-500">Email</p>
-                      <p id="profile-email" class="text-gray-900 font-medium">
-                        email@example.com
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start space-x-3">
-                    <svg
-                      class="w-5 h-5 text-gray-400 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      ></path>
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      ></path>
-                    </svg>
-                    <div>
-                      <p class="text-sm text-gray-500">Location</p>
-                      <p
-                        id="profile-location"
-                        class="text-gray-900 font-medium"
-                      >
-                        Location
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start space-x-3">
-                    <svg
-                      class="w-5 h-5 text-gray-400 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                    <div>
-                      <p class="text-sm text-gray-500">Joined</p>
-                      <p id="profile-joined" class="text-gray-900 font-medium">
-                        January 2024
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-6 pt-6 border-t border-gray-200">
-                  <p class="text-sm text-gray-500 mb-2">Bio</p>
-                  <p id="profile-bio" class="text-gray-900 leading-relaxed">
+                  <p
+                    id="profile-bio"
+                    class="text-gray-700 text-center py-4 bg-gray-50 rounded-xl"
+                  >
                     Your bio will appear here...
                   </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-gray-700">
+                      <svg
+                        class="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                      <span class="text-sm"
+                        >Software Developer at
+                        <span class="font-semibold">Tech Corp</span></span
+                      >
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-gray-700">
+                      <svg
+                        class="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                        ></path>
+                      </svg>
+                      <span class="text-sm"
+                        >Studied at
+                        <span class="font-semibold">University Name</span></span
+                      >
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-gray-700">
+                      <svg
+                        class="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                        ></path>
+                      </svg>
+                      <span class="text-sm"
+                        >Lives in
+                        <span id="profile-location" class="font-semibold"
+                          >Location</span
+                        ></span
+                      >
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-gray-700">
+                      <svg
+                        class="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        ></path>
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        ></path>
+                      </svg>
+                      <span class="text-sm"
+                        >From
+                        <span class="font-semibold"
+                          >Hometown, Country</span
+                        ></span
+                      >
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-gray-700">
+                      <svg
+                        class="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                      <span class="text-sm"
+                        >Joined
+                        <span id="profile-joined" class="font-semibold"
+                          >January 2024</span
+                        ></span
+                      >
+                    </div>
+                  </div>
+
+                  <button
+                    class="w-full py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors duration-200"
+                  >
+                    Edit Details
+                  </button>
+                </div>
+              </div>
+
+              <!-- Photos Card -->
+              <div
+                class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <h2 class="text-xl font-bold text-gray-900">Photos</h2>
+                  <a
+                    href="#"
+                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold"
+                    >See All</a
+                  >
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                  <div
+                    class="aspect-square bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg"
+                  ></div>
+                  <div
+                    class="aspect-square bg-gradient-to-br from-purple-200 to-purple-300 rounded-lg"
+                  ></div>
+                  <div
+                    class="aspect-square bg-gradient-to-br from-pink-200 to-pink-300 rounded-lg"
+                  ></div>
+                  <div
+                    class="aspect-square bg-gradient-to-br from-green-200 to-green-300 rounded-lg"
+                  ></div>
+                  <div
+                    class="aspect-square bg-gradient-to-br from-yellow-200 to-yellow-300 rounded-lg"
+                  ></div>
+                  <div
+                    class="aspect-square bg-gradient-to-br from-red-200 to-red-300 rounded-lg"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Friends Preview Card -->
+              <div
+                class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div>
+                    <h2 class="text-xl font-bold text-gray-900">Friends</h2>
+                    <p id="friend-preview-count" class="text-sm text-gray-500">
+                      0 friends
+                    </p>
+                  </div>
+                  <a
+                    href="#friends-section"
+                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold"
+                    >See All</a
+                  >
+                </div>
+                <div id="friends-preview" class="grid grid-cols-3 gap-2">
+                  <!-- Friends preview will be loaded here -->
                 </div>
               </div>
             </div>
 
-            <!-- Right Column - Friends List -->
-            <div class="lg:col-span-2">
+            <!-- Right Column - Posts & Activity -->
+            <div class="lg:col-span-2 space-y-6">
+              <!-- Create Post Card -->
               <div
                 class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
               >
+                <div class="flex items-center space-x-3">
+                  <div
+                    id="create-post-avatar"
+                    class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-lg font-bold"
+                  >
+                    --
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="What's on your mind?"
+                    class="flex-1 px-4 py-3 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div
+                  class="flex items-center space-x-4 mt-4 pt-4 border-t border-gray-200"
+                >
+                  <button
+                    class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                  >
+                    <svg
+                      class="w-5 h-5 text-red-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm font-medium text-gray-700"
+                      >Photo/Video</span
+                    >
+                  </button>
+                  <button
+                    class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                  >
+                    <svg
+                      class="w-5 h-5 text-yellow-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm font-medium text-gray-700"
+                      >Feeling/Activity</span
+                    >
+                  </button>
+                </div>
+              </div>
+
+              <!-- Recent Posts -->
+              <div id="posts-container">
+                <!-- Sample Post 1 -->
+                <div
+                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6"
+                >
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                      <div
+                        id="post-avatar-1"
+                        class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-lg font-bold"
+                      >
+                        --
+                      </div>
+                      <div>
+                        <h3
+                          id="post-name-1"
+                          class="font-semibold text-gray-900"
+                        >
+                          Loading...
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          2 hours ago • 🌍 Public
+                        </p>
+                      </div>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600">
+                      <svg
+                        class="w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <p class="text-gray-800 mb-4">
+                    Just had an amazing day exploring the city! The weather is
+                    perfect ☀️ and I discovered this awesome new coffee shop.
+                    Highly recommend checking it out!
+                  </p>
+
+                  <!-- Post Image -->
+                  <div
+                    class="rounded-xl overflow-hidden mb-4 h-96 bg-gradient-to-br from-blue-300 via-purple-300 to-pink-300"
+                  ></div>
+
+                  <!-- Post Stats -->
+                  <div
+                    class="flex items-center justify-between py-2 border-t border-b border-gray-200 mb-4"
+                  >
+                    <span class="text-sm text-gray-600">❤️ 142 Likes</span>
+                    <div
+                      class="flex items-center space-x-4 text-sm text-gray-600"
+                    >
+                      <span>28 Comments</span>
+                      <span>12 Shares</span>
+                    </div>
+                  </div>
+
+                  <!-- Post Actions -->
+                  <div class="flex items-center justify-around">
+                    <button
+                      class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                        ></path>
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700"
+                        >Like</span
+                      >
+                    </button>
+                    <button
+                      class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                        ></path>
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700"
+                        >Comment</span
+                      >
+                    </button>
+                    <button
+                      class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                        ></path>
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700"
+                        >Share</span
+                      >
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Sample Post 2 -->
+                <div
+                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6"
+                >
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                      <div
+                        id="post-avatar-2"
+                        class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-lg font-bold"
+                      >
+                        --
+                      </div>
+                      <div>
+                        <h3
+                          id="post-name-2"
+                          class="font-semibold text-gray-900"
+                        >
+                          Loading...
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          1 day ago • 👥 Friends
+                        </p>
+                      </div>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600">
+                      <svg
+                        class="w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <p class="text-gray-800 mb-4">
+                    Excited to announce that I just completed my certification!
+                    🎉 Hard work pays off. Thanks to everyone who supported me
+                    throughout this journey! 💪
+                  </p>
+
+                  <!-- Post Stats -->
+                  <div
+                    class="flex items-center justify-between py-2 border-t border-b border-gray-200 mb-4"
+                  >
+                    <span class="text-sm text-gray-600">❤️ 89 Likes</span>
+                    <div
+                      class="flex items-center space-x-4 text-sm text-gray-600"
+                    >
+                      <span>15 Comments</span>
+                      <span>5 Shares</span>
+                    </div>
+                  </div>
+
+                  <!-- Post Actions -->
+                  <div class="flex items-center justify-around">
+                    <button
+                      class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                        ></path>
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700"
+                        >Like</span
+                      >
+                    </button>
+                    <button
+                      class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                        ></path>
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700"
+                        >Comment</span
+                      >
+                    </button>
+                    <button
+                      class="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                        ></path>
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700"
+                        >Share</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Friends Section -->
+              <div
+                id="friends-section"
+                class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+              >
                 <div class="flex items-center justify-between mb-6">
-                  <h2 class="text-xl font-bold text-gray-900">Friends</h2>
+                  <h2 class="text-2xl font-bold text-gray-900">Friends</h2>
                   <span id="friend-list-count" class="text-sm text-gray-500"
                     >0 friends</span
                   >

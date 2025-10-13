@@ -24,15 +24,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Display user profile
 function displayUserProfile(user) {
+  // Header section
   document.getElementById("profile-avatar").textContent = user.profilePicture;
   document.getElementById("profile-name").textContent = user.fullName;
   document.getElementById("profile-username").textContent = `@${user.username}`;
-  document.getElementById("profile-email").textContent = user.email;
   document.getElementById("profile-location").textContent = user.location;
   document.getElementById("profile-joined").textContent = user.joined;
   document.getElementById("profile-bio").textContent = user.bio;
   document.getElementById("posts-count").textContent = user.posts;
   document.getElementById("friends-count").textContent = user.friendsCount;
+
+  // Create post avatar
+  document.getElementById("create-post-avatar").textContent =
+    user.profilePicture;
+
+  // Post avatars
+  document.getElementById("post-avatar-1").textContent = user.profilePicture;
+  document.getElementById("post-name-1").textContent = user.fullName;
+  document.getElementById("post-avatar-2").textContent = user.profilePicture;
+  document.getElementById("post-name-2").textContent = user.fullName;
 }
 
 // Load and display friends
@@ -40,10 +50,43 @@ function loadFriends() {
   const friends = getUserFriends();
   const friendsList = document.getElementById("friends-list");
   const friendCount = document.getElementById("friend-list-count");
+  const friendPreviewCount = document.getElementById("friend-preview-count");
+  const friendsPreview = document.getElementById("friends-preview");
 
+  // Update counts
   friendCount.textContent = `${friends.length} friend${
     friends.length !== 1 ? "s" : ""
   }`;
+  friendPreviewCount.textContent = `${friends.length} friend${
+    friends.length !== 1 ? "s" : ""
+  }`;
+
+  // Load preview (first 6 friends)
+  if (friendsPreview) {
+    if (friends.length === 0) {
+      friendsPreview.innerHTML = `
+        <div class="col-span-3 text-center text-gray-400 text-sm py-4">
+          No friends yet
+        </div>
+      `;
+    } else {
+      friendsPreview.innerHTML = friends
+        .slice(0, 6)
+        .map(
+          (friend) => `
+        <div class="text-center">
+          <div class="w-full aspect-square bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center text-white text-sm font-bold mb-1">
+            ${friend.profilePicture}
+          </div>
+          <p class="text-xs text-gray-700 font-medium truncate">${
+            friend.fullName.split(" ")[0]
+          }</p>
+        </div>
+      `
+        )
+        .join("");
+    }
+  }
 
   if (friends.length === 0) {
     friendsList.innerHTML = `
