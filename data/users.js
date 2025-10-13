@@ -180,3 +180,10 @@ function isLoggedIn() {
 
 // Initialize users on page load
 initializeUsers();
+
+// Debug: Log that users.js is loaded
+console.log("Users.js loaded successfully");
+console.log(
+  "Available users:",
+  getAllUsers().map((u) => u.username)
+);
