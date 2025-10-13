@@ -1,0 +1,94 @@
+/* Home Page / News Feed Styles */
+
+/* Post card animations */
+.post-card {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Like/Dislike button hover effects */
+.like-btn:hover,
+.dislike-btn:hover {
+  transform: scale(1.05);
+}
+
+.like-btn:active,
+.dislike-btn:active {
+  transform: scale(0.95);
+}
+
+/* Success notification animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Modal backdrop animation */
+#create-post-modal {
+  animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Sticky sidebar */
+.sticky {
+  position: sticky;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Post image hover effect */
+.post-card img,
+.post-card [class*="bg-gradient"] {
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover img,
+.post-card:hover [class*="bg-gradient"] {
+  transform: scale(1.02);
+}
+
+/* Online status pulse */
+@keyframes pulse-green {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.online-status {
+  animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
