@@ -634,6 +634,7 @@
                   class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200"
                 >
                   <button
+                    id="photo-btn"
                     class="flex items-center justify-center space-x-2 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                   >
                     <svg
@@ -650,6 +651,7 @@
                     <span class="text-sm font-medium text-gray-700">Photo</span>
                   </button>
                   <button
+                    id="feeling-btn"
                     class="flex items-center justify-center space-x-2 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                   >
                     <svg
@@ -668,6 +670,7 @@
                     >
                   </button>
                   <button
+                    id="checkin-btn"
                     class="flex items-center justify-center space-x-2 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                   >
                     <svg
@@ -975,6 +978,91 @@
             rows="5"
           ></textarea>
 
+          <!-- Photo URL Input (Hidden by default) -->
+          <div id="photo-input-section" class="hidden mt-4">
+            <label class="block text-sm font-semibold text-gray-900 mb-2">
+              📷 Add Photo URL:
+            </label>
+            <input
+              type="text"
+              id="photo-url-input"
+              placeholder="https://example.com/image.jpg"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <p class="text-xs text-gray-500 mt-1">
+              Paste an image URL or use a random placeholder
+            </p>
+            <button
+              type="button"
+              id="random-photo-btn"
+              class="mt-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors"
+            >
+              Use Random Photo
+            </button>
+          </div>
+
+          <!-- Feeling Selector (Hidden by default) -->
+          <div id="feeling-selector-section" class="hidden mt-4">
+            <label class="block text-sm font-semibold text-gray-900 mb-2">
+              😊 How are you feeling?
+            </label>
+            <select
+              id="feeling-select"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select a feeling...</option>
+              <option value="happy">😊 Happy</option>
+              <option value="excited">🤩 Excited</option>
+              <option value="blessed">🙏 Blessed</option>
+              <option value="grateful">💖 Grateful</option>
+              <option value="motivated">💪 Motivated</option>
+              <option value="relaxed">😌 Relaxed</option>
+              <option value="loved">🥰 Loved</option>
+              <option value="inspired">✨ Inspired</option>
+              <option value="peaceful">☮️ Peaceful</option>
+              <option value="energetic">⚡ Energetic</option>
+            </select>
+          </div>
+
+          <!-- Check-in Location Input (Hidden by default) -->
+          <div id="checkin-input-section" class="hidden mt-4">
+            <label class="block text-sm font-semibold text-gray-900 mb-2">
+              📍 Where are you?
+            </label>
+            <input
+              type="text"
+              id="checkin-location-input"
+              placeholder="e.g., Islamabad, Pakistan"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <div class="mt-2 flex flex-wrap gap-2">
+              <button
+                type="button"
+                class="quick-location px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-sm transition-colors"
+              >
+                📍 Karachi
+              </button>
+              <button
+                type="button"
+                class="quick-location px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-sm transition-colors"
+              >
+                📍 Lahore
+              </button>
+              <button
+                type="button"
+                class="quick-location px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-sm transition-colors"
+              >
+                📍 Islamabad
+              </button>
+              <button
+                type="button"
+                class="quick-location px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-sm transition-colors"
+              >
+                📍 Dubai
+              </button>
+            </div>
+          </div>
+
           <div
             id="custom-share-options"
             class="hidden mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl"
@@ -990,9 +1078,69 @@
             </div>
           </div>
 
+          <!-- Action Buttons -->
+          <div
+            class="mt-6 flex items-center gap-3 border-t border-gray-200 pt-4"
+          >
+            <button
+              type="button"
+              id="modal-photo-btn"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <svg
+                class="w-5 h-5 text-red-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="text-sm font-medium">Photo</span>
+            </button>
+            <button
+              type="button"
+              id="modal-feeling-btn"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <svg
+                class="w-5 h-5 text-yellow-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="text-sm font-medium">Feeling</span>
+            </button>
+            <button
+              type="button"
+              id="modal-checkin-btn"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <svg
+                class="w-5 h-5 text-green-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="text-sm font-medium">Check In</span>
+            </button>
+          </div>
+
           <button
             id="submit-post"
-            class="w-full mt-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200"
+            class="w-full mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200"
           >
             Post
           </button>

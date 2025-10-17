@@ -138,31 +138,29 @@ function getAllPosts() {
   return posts ? JSON.parse(posts) : SAMPLE_POSTS;
 }
 
-// Get posts for news feed (from friends, ordered by user's last login)
+// Get posts for news feed (from friends + own posts, ordered by user's last login)
 function getNewsFeedPosts() {
   const currentUser = getCurrentUser();
   if (!currentUser) return [];
 
   const fullUser = getUserById(currentUser.id);
-  if (!fullUser || !fullUser.friends) return [];
+  if (!fullUser) return [];
 
   const allPosts = getAllPosts();
   const allUsers = getAllUsers();
 
-  // Get posts from friends only
-  const friendPosts = allPosts.filter((post) =>
-    fullUser.friends.includes(post.userId)
-  );
+  // Get posts from friends AND the current user's own posts
+  const friendPosts = allPosts.filter((post) => {
+    // Include user's own posts OR posts from friends
+    return (
+      post.userId === currentUser.id ||
+      (fullUser.friends && fullUser.friends.includes(post.userId))
+    );
+  });
 
-  // Sort by user's last login time (most recent first)
+  // Sort by timestamp (most recent first)
   const sortedPosts = friendPosts.sort((a, b) => {
-    const userA = allUsers.find((u) => u.id === a.userId);
-    const userB = allUsers.find((u) => u.id === b.userId);
-
-    const loginA = new Date(userA?.lastLogin || 0);
-    const loginB = new Date(userB?.lastLogin || 0);
-
-    return loginB - loginA; // Most recent login first
+    return new Date(b.timestamp) - new Date(a.timestamp);
   });
 
   // Attach user info to each post

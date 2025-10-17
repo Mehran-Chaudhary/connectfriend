@@ -197,7 +197,7 @@ function createPostHTML(post) {
       </div>
 
       <!-- Post Content -->
-      <p class="text-gray-800 mb-4">${post.content}</p>
+      <p class="text-gray-800 mb-4 whitespace-pre-line">${post.content}</p>
 
       <!-- Post Image (if exists) -->
       ${
@@ -410,15 +410,13 @@ function setupEventListeners() {
 
   if (postInput && createPostModal) {
     postInput.addEventListener("click", () => {
-      createPostModal.classList.remove("hidden");
-      loadFriendsForCustomShare();
+      openCreatePostModal();
     });
   }
 
   if (closeModal && createPostModal) {
     closeModal.addEventListener("click", () => {
-      createPostModal.classList.add("hidden");
-      document.getElementById("post-content").value = "";
+      closeCreatePostModal();
     });
   }
 
@@ -426,8 +424,7 @@ function setupEventListeners() {
   if (createPostModal) {
     createPostModal.addEventListener("click", (e) => {
       if (e.target === createPostModal) {
-        createPostModal.classList.add("hidden");
-        document.getElementById("post-content").value = "";
+        closeCreatePostModal();
       }
     });
   }
@@ -447,6 +444,69 @@ function setupEventListeners() {
   if (submitPost) {
     submitPost.addEventListener("click", handleCreatePost);
   }
+
+  // Quick action buttons (Photo, Feeling, Check-in) - Feed section
+  const photoBtn = document.getElementById("photo-btn");
+  const feelingBtn = document.getElementById("feeling-btn");
+  const checkinBtn = document.getElementById("checkin-btn");
+
+  if (photoBtn) {
+    photoBtn.addEventListener("click", () => {
+      openCreatePostModal("photo");
+    });
+  }
+
+  if (feelingBtn) {
+    feelingBtn.addEventListener("click", () => {
+      openCreatePostModal("feeling");
+    });
+  }
+
+  if (checkinBtn) {
+    checkinBtn.addEventListener("click", () => {
+      openCreatePostModal("checkin");
+    });
+  }
+
+  // Modal action buttons
+  const modalPhotoBtn = document.getElementById("modal-photo-btn");
+  const modalFeelingBtn = document.getElementById("modal-feeling-btn");
+  const modalCheckinBtn = document.getElementById("modal-checkin-btn");
+
+  if (modalPhotoBtn) {
+    modalPhotoBtn.addEventListener("click", () => togglePhotoSection());
+  }
+
+  if (modalFeelingBtn) {
+    modalFeelingBtn.addEventListener("click", () => toggleFeelingSection());
+  }
+
+  if (modalCheckinBtn) {
+    modalCheckinBtn.addEventListener("click", () => toggleCheckinSection());
+  }
+
+  // Random photo button
+  const randomPhotoBtn = document.getElementById("random-photo-btn");
+  if (randomPhotoBtn) {
+    randomPhotoBtn.addEventListener("click", () => {
+      const randomSeed = Math.random().toString(36).substring(7);
+      const photoInput = document.getElementById("photo-url-input");
+      if (photoInput) {
+        photoInput.value = `https://picsum.photos/seed/${randomSeed}/800/600`;
+      }
+    });
+  }
+
+  // Quick location buttons
+  document.querySelectorAll(".quick-location").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const location = this.textContent.trim().replace("📍 ", "");
+      const checkinInput = document.getElementById("checkin-location-input");
+      if (checkinInput) {
+        checkinInput.value = location;
+      }
+    });
+  });
 }
 
 // Load friends for custom share
@@ -482,13 +542,148 @@ function loadFriendsForCustomShare() {
     .join("");
 }
 
+// Open create post modal with optional pre-selected action
+function openCreatePostModal(action = null) {
+  const createPostModal = document.getElementById("create-post-modal");
+  createPostModal.classList.remove("hidden");
+  loadFriendsForCustomShare();
+
+  // Reset all sections
+  resetPostModalSections();
+
+  // Activate specific section if action is provided
+  if (action === "photo") {
+    togglePhotoSection();
+  } else if (action === "feeling") {
+    toggleFeelingSection();
+  } else if (action === "checkin") {
+    toggleCheckinSection();
+  }
+}
+
+// Close create post modal
+function closeCreatePostModal() {
+  const createPostModal = document.getElementById("create-post-modal");
+  createPostModal.classList.add("hidden");
+  document.getElementById("post-content").value = "";
+  resetPostModalSections();
+}
+
+// Reset all post modal sections
+function resetPostModalSections() {
+  const photoSection = document.getElementById("photo-input-section");
+  const feelingSection = document.getElementById("feeling-selector-section");
+  const checkinSection = document.getElementById("checkin-input-section");
+
+  if (photoSection) photoSection.classList.add("hidden");
+  if (feelingSection) feelingSection.classList.add("hidden");
+  if (checkinSection) checkinSection.classList.add("hidden");
+
+  // Clear inputs
+  const photoInput = document.getElementById("photo-url-input");
+  const feelingSelect = document.getElementById("feeling-select");
+  const checkinInput = document.getElementById("checkin-location-input");
+
+  if (photoInput) photoInput.value = "";
+  if (feelingSelect) feelingSelect.value = "";
+  if (checkinInput) checkinInput.value = "";
+}
+
+// Toggle photo section
+function togglePhotoSection() {
+  const photoSection = document.getElementById("photo-input-section");
+  const feelingSection = document.getElementById("feeling-selector-section");
+  const checkinSection = document.getElementById("checkin-input-section");
+
+  if (photoSection) {
+    const isHidden = photoSection.classList.contains("hidden");
+    if (feelingSection) feelingSection.classList.add("hidden");
+    if (checkinSection) checkinSection.classList.add("hidden");
+
+    if (isHidden) {
+      photoSection.classList.remove("hidden");
+    } else {
+      photoSection.classList.add("hidden");
+    }
+  }
+}
+
+// Toggle feeling section
+function toggleFeelingSection() {
+  const photoSection = document.getElementById("photo-input-section");
+  const feelingSection = document.getElementById("feeling-selector-section");
+  const checkinSection = document.getElementById("checkin-input-section");
+
+  if (feelingSection) {
+    const isHidden = feelingSection.classList.contains("hidden");
+    if (photoSection) photoSection.classList.add("hidden");
+    if (checkinSection) checkinSection.classList.add("hidden");
+
+    if (isHidden) {
+      feelingSection.classList.remove("hidden");
+    } else {
+      feelingSection.classList.add("hidden");
+    }
+  }
+}
+
+// Toggle check-in section
+function toggleCheckinSection() {
+  const photoSection = document.getElementById("photo-input-section");
+  const feelingSection = document.getElementById("feeling-selector-section");
+  const checkinSection = document.getElementById("checkin-input-section");
+
+  if (checkinSection) {
+    const isHidden = checkinSection.classList.contains("hidden");
+    if (photoSection) photoSection.classList.add("hidden");
+    if (feelingSection) feelingSection.classList.add("hidden");
+
+    if (isHidden) {
+      checkinSection.classList.remove("hidden");
+    } else {
+      checkinSection.classList.add("hidden");
+    }
+  }
+}
+
 // Handle creating new post
 function handleCreatePost() {
   const content = document.getElementById("post-content").value.trim();
   const visibility = document.getElementById("post-visibility").value;
+  const photoUrl = document.getElementById("photo-url-input").value.trim();
+  const feeling = document.getElementById("feeling-select").value;
+  const location = document
+    .getElementById("checkin-location-input")
+    .value.trim();
 
-  if (!content) {
-    alert("Please write something before posting!");
+  // Build the post content with metadata
+  let finalContent = content;
+
+  // Add feeling to content if selected
+  if (feeling) {
+    const feelingEmojis = {
+      happy: "😊",
+      excited: "🤩",
+      blessed: "🙏",
+      grateful: "💖",
+      motivated: "💪",
+      relaxed: "😌",
+      loved: "🥰",
+      inspired: "✨",
+      peaceful: "☮️",
+      energetic: "⚡",
+    };
+    const feelingText = feeling.charAt(0).toUpperCase() + feeling.slice(1);
+    finalContent = `${finalContent}\n\n${feelingEmojis[feeling]} Feeling ${feelingText}`;
+  }
+
+  // Add location to content if provided
+  if (location) {
+    finalContent = `${finalContent}\n\n📍 at ${location}`;
+  }
+
+  if (!content && !photoUrl) {
+    alert("Please write something or add a photo before posting!");
     return;
   }
 
@@ -505,13 +700,17 @@ function handleCreatePost() {
     }
   }
 
-  // Create the post
-  const newPost = createPost(content, null, visibility, sharedWith);
+  // Create the post with photo URL if provided
+  const newPost = createPost(
+    finalContent || "Check out this photo!",
+    photoUrl || null,
+    visibility,
+    sharedWith
+  );
 
   if (newPost) {
     // Close modal
-    document.getElementById("create-post-modal").classList.add("hidden");
-    document.getElementById("post-content").value = "";
+    closeCreatePostModal();
 
     // Show success message
     showSuccessMessage("Post created successfully!");
