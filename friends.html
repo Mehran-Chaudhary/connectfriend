@@ -272,7 +272,7 @@
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-sm text-gray-500 mb-1">Friend Requests</p>
-                  <p class="text-3xl font-bold text-gray-900">2</p>
+                  <p id="requests-count" class="text-3xl font-bold text-gray-900">0</p>
                 </div>
                 <div
                   class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center"
@@ -300,7 +300,7 @@
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-sm text-gray-500 mb-1">Suggestions</p>
-                  <p class="text-3xl font-bold text-gray-900">8</p>
+                  <p id="suggestions-count" class="text-3xl font-bold text-gray-900">0</p>
                 </div>
                 <div
                   class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center"
@@ -417,64 +417,19 @@
                 Friend Requests
               </h2>
 
-              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Sample Request 1 -->
-                <div
-                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
-                >
-                  <div class="text-center mb-4">
-                    <div
-                      class="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3"
-                    >
-                      JR
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg">
-                      Jessica Rodriguez
-                    </h3>
-                    <p class="text-sm text-gray-500">@jessica_rod</p>
-                    <p class="text-xs text-gray-400 mt-2">2 mutual friends</p>
-                  </div>
-                  <div class="flex space-x-2">
-                    <button
-                      class="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-                    >
-                      Accept
-                    </button>
-                    <button
-                      class="flex-1 px-4 py-2.5 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
-                    >
-                      Decline
-                    </button>
-                  </div>
-                </div>
+              <div id="requests-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Requests will be loaded here -->
+              </div>
+            </div>
 
-                <!-- Sample Request 2 -->
-                <div
-                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
-                >
-                  <div class="text-center mb-4">
-                    <div
-                      class="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3"
-                    >
-                      RC
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg">Robert Chen</h3>
-                    <p class="text-sm text-gray-500">@rob_chen</p>
-                    <p class="text-xs text-gray-400 mt-2">1 mutual friend</p>
-                  </div>
-                  <div class="flex space-x-2">
-                    <button
-                      class="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-                    >
-                      Accept
-                    </button>
-                    <button
-                      class="flex-1 px-4 py-2.5 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
-                    >
-                      Decline
-                    </button>
-                  </div>
-                </div>
+            <!-- Sent Requests Section (Hidden initially) -->
+            <div id="sent-requests-section" class="hidden mt-8">
+              <h3 class="text-lg font-bold text-gray-900 mb-4">
+                Sent Requests
+              </h3>
+              <div id="sent-requests-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Sent requests will be loaded here -->
+              </div>
               </div>
             </div>
 
@@ -484,94 +439,8 @@
                 People You May Know
               </h2>
 
-              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Suggestion 1 -->
-                <div
-                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div class="text-center mb-4">
-                    <div
-                      class="w-24 h-24 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3"
-                    >
-                      LM
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg">
-                      Lisa Martinez
-                    </h3>
-                    <p class="text-sm text-gray-500">@lisa_m</p>
-                    <p class="text-xs text-gray-400 mt-2">5 mutual friends</p>
-                  </div>
-                  <button
-                    class="w-full px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-                  >
-                    Add Friend
-                  </button>
-                </div>
-
-                <!-- Suggestion 2 -->
-                <div
-                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div class="text-center mb-4">
-                    <div
-                      class="w-24 h-24 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3"
-                    >
-                      DT
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg">
-                      David Taylor
-                    </h3>
-                    <p class="text-sm text-gray-500">@david_t</p>
-                    <p class="text-xs text-gray-400 mt-2">3 mutual friends</p>
-                  </div>
-                  <button
-                    class="w-full px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-                  >
-                    Add Friend
-                  </button>
-                </div>
-
-                <!-- Suggestion 3 -->
-                <div
-                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div class="text-center mb-4">
-                    <div
-                      class="w-24 h-24 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3"
-                    >
-                      NK
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg">Nina Kumar</h3>
-                    <p class="text-sm text-gray-500">@nina_k</p>
-                    <p class="text-xs text-gray-400 mt-2">7 mutual friends</p>
-                  </div>
-                  <button
-                    class="w-full px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-                  >
-                    Add Friend
-                  </button>
-                </div>
-
-                <!-- Suggestion 4 -->
-                <div
-                  class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div class="text-center mb-4">
-                    <div
-                      class="w-24 h-24 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3"
-                    >
-                      TW
-                    </div>
-                    <h3 class="font-bold text-gray-900 text-lg">Tom White</h3>
-                    <p class="text-sm text-gray-500">@tom_white</p>
-                    <p class="text-xs text-gray-400 mt-2">4 mutual friends</p>
-                  </div>
-                  <button
-                    class="w-full px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-                  >
-                    Add Friend
-                  </button>
-                </div>
+              <div id="suggestions-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Suggestions will be loaded here -->
               </div>
             </div>
           </div>

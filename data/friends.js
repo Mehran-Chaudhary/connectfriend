@@ -114,4 +114,171 @@ function getTimeSinceLogin(lastLogin) {
   return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
 }
 
+// Friend Request Management
+
+// Get friend requests for current user
+function getFriendRequests() {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return [];
+
+  const requestsKey = "connecfriend_friend_requests";
+  const requests = localStorage.getItem(requestsKey);
+  const allRequests = requests ? JSON.parse(requests) : {};
+
+  const userRequests = allRequests[currentUser.id] || [];
+  const allUsers = getAllUsers();
+
+  return userRequests
+    .map((userId) => allUsers.find((u) => u.id === userId))
+    .filter((u) => u);
+}
+
+// Get sent friend requests
+function getSentFriendRequests() {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return [];
+
+  const requestsKey = "connecfriend_friend_requests";
+  const requests = localStorage.getItem(requestsKey);
+  const allRequests = requests ? JSON.parse(requests) : {};
+
+  const allUsers = getAllUsers();
+  const sentRequests = [];
+
+  // Find all users who have a request from current user
+  for (const [userId, requesters] of Object.entries(allRequests)) {
+    if (requesters.includes(currentUser.id)) {
+      const user = allUsers.find((u) => u.id === parseInt(userId));
+      if (user) sentRequests.push(user);
+    }
+  }
+
+  return sentRequests;
+}
+
+// Send friend request
+function sendFriendRequest(toUserId) {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return false;
+
+  const requestsKey = "connecfriend_friend_requests";
+  const requests = localStorage.getItem(requestsKey);
+  const allRequests = requests ? JSON.parse(requests) : {};
+
+  if (!allRequests[toUserId]) {
+    allRequests[toUserId] = [];
+  }
+
+  if (!allRequests[toUserId].includes(currentUser.id)) {
+    allRequests[toUserId].push(currentUser.id);
+  }
+
+  localStorage.setItem(requestsKey, JSON.stringify(allRequests));
+  return true;
+}
+
+// Accept friend request
+function acceptFriendRequest(fromUserId) {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return false;
+
+  // Remove from requests
+  const requestsKey = "connecfriend_friend_requests";
+  const requests = localStorage.getItem(requestsKey);
+  const allRequests = requests ? JSON.parse(requests) : {};
+
+  if (allRequests[currentUser.id]) {
+    allRequests[currentUser.id] = allRequests[currentUser.id].filter(
+      (id) => id !== fromUserId
+    );
+  }
+
+  localStorage.setItem(requestsKey, JSON.stringify(allRequests));
+
+  // Add to friends list
+  const usersKey = "connecfriend_users";
+  const users = JSON.parse(localStorage.getItem(usersKey) || "[]");
+
+  const currentUserData = users.find((u) => u.id === currentUser.id);
+  const fromUserData = users.find((u) => u.id === fromUserId);
+
+  if (currentUserData && fromUserData) {
+    if (!currentUserData.friends) currentUserData.friends = [];
+    if (!fromUserData.friends) fromUserData.friends = [];
+
+    if (!currentUserData.friends.includes(fromUserId)) {
+      currentUserData.friends.push(fromUserId);
+    }
+
+    if (!fromUserData.friends.includes(currentUser.id)) {
+      fromUserData.friends.push(currentUser.id);
+    }
+
+    localStorage.setItem(usersKey, JSON.stringify(users));
+  }
+
+  return true;
+}
+
+// Decline friend request
+function declineFriendRequest(fromUserId) {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return false;
+
+  const requestsKey = "connecfriend_friend_requests";
+  const requests = localStorage.getItem(requestsKey);
+  const allRequests = requests ? JSON.parse(requests) : {};
+
+  if (allRequests[currentUser.id]) {
+    allRequests[currentUser.id] = allRequests[currentUser.id].filter(
+      (id) => id !== fromUserId
+    );
+  }
+
+  localStorage.setItem(requestsKey, JSON.stringify(allRequests));
+  return true;
+}
+
+// Cancel friend request
+function cancelFriendRequest(toUserId) {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return false;
+
+  const requestsKey = "connecfriend_friend_requests";
+  const requests = localStorage.getItem(requestsKey);
+  const allRequests = requests ? JSON.parse(requests) : {};
+
+  if (allRequests[toUserId]) {
+    allRequests[toUserId] = allRequests[toUserId].filter(
+      (id) => id !== currentUser.id
+    );
+  }
+
+  localStorage.setItem(requestsKey, JSON.stringify(allRequests));
+  return true;
+}
+
+// Get suggestions (users who are not friends and haven't been requested)
+function getSuggestions() {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return [];
+
+  const fullUser = getUserById(currentUser.id);
+  const allUsers = getAllUsers();
+  const sentRequests = getSentFriendRequests();
+  const sentRequestIds = sentRequests.map((u) => u.id);
+
+  const friends = fullUser.friends || [];
+
+  return allUsers
+    .filter((user) => {
+      return (
+        user.id !== currentUser.id &&
+        !friends.includes(user.id) &&
+        !sentRequestIds.includes(user.id)
+      );
+    })
+    .slice(0, 8); // Limit to 8 suggestions
+}
+
 console.log("Friends.js loaded successfully");

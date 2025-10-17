@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Load friends
   loadAllFriends();
 
+  // Load friend requests
+  loadFriendRequests();
+
+  // Load suggestions
+  loadSuggestions();
+
   // Update stats
   updateStats();
 
@@ -24,11 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
 // Update stats
 function updateStats() {
   const friends = getUserFriends();
+  const requests = getFriendRequests();
+  const suggestions = getSuggestions();
+
   document.getElementById("all-friends-count").textContent = friends.length;
   document.getElementById("online-count").textContent = Math.min(
     friends.length,
     3
   ); // Simulate online friends
+  document.getElementById("requests-count").textContent = requests.length;
+  document.getElementById("suggestions-count").textContent = suggestions.length;
 }
 
 // Load all friends
@@ -215,10 +226,12 @@ function setupEventListeners() {
 
   tabRequests.addEventListener("click", () => {
     switchTab(tabRequests, requestsSection);
+    loadFriendRequests(); // Reload when switching to this tab
   });
 
   tabSuggestions.addEventListener("click", () => {
     switchTab(tabSuggestions, suggestionsSection);
+    loadSuggestions(); // Reload when switching to this tab
   });
 
   // Logout
@@ -305,6 +318,224 @@ function filterFriends(query) {
     .join("");
 
   attachRatingListeners();
+}
+
+// Load friend requests
+function loadFriendRequests() {
+  const requests = getFriendRequests();
+  const sentRequests = getSentFriendRequests();
+  const requestsGrid = document.getElementById("requests-grid");
+  const sentRequestsGrid = document.getElementById("sent-requests-grid");
+  const sentRequestsSection = document.getElementById("sent-requests-section");
+
+  // Load incoming requests
+  if (requests.length === 0) {
+    requestsGrid.innerHTML = `
+      <div class="col-span-3 text-center py-12">
+        <p class="text-gray-500">No friend requests</p>
+      </div>
+    `;
+  } else {
+    requestsGrid.innerHTML = requests
+      .map((user) => createRequestCard(user))
+      .join("");
+    attachRequestListeners();
+  }
+
+  // Load sent requests
+  if (sentRequests.length > 0) {
+    sentRequestsSection.classList.remove("hidden");
+    sentRequestsGrid.innerHTML = sentRequests
+      .map((user) => createSentRequestCard(user))
+      .join("");
+  } else {
+    sentRequestsSection.classList.add("hidden");
+  }
+}
+
+// Create friend request card
+function createRequestCard(user) {
+  const alias = user.alias || user.profilePicture;
+  const isImageUrl =
+    user.profilePicture && user.profilePicture.startsWith("http");
+  const avatarHTML = isImageUrl
+    ? `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`
+    : alias;
+
+  return `
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+      <div class="text-center mb-4">
+        <div class="w-24 h-24 ${
+          isImageUrl ? "" : "bg-gradient-to-br from-indigo-500 to-purple-500"
+        } rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3 overflow-hidden">
+          ${avatarHTML}
+        </div>
+        <h3 class="font-bold text-gray-900 text-lg">${user.fullName}</h3>
+        <p class="text-sm text-gray-500">@${user.username}</p>
+        <p class="text-xs text-gray-400 mt-2">${
+          Math.floor(Math.random() * 5) + 1
+        } mutual friends</p>
+      </div>
+      <div class="flex space-x-2">
+        <button
+          class="accept-request-btn flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
+          data-user-id="${user.id}"
+        >
+          Accept
+        </button>
+        <button
+          class="decline-request-btn flex-1 px-4 py-2.5 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
+          data-user-id="${user.id}"
+        >
+          Decline
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// Create sent request card
+function createSentRequestCard(user) {
+  const alias = user.alias || user.profilePicture;
+  const isImageUrl =
+    user.profilePicture && user.profilePicture.startsWith("http");
+  const avatarHTML = isImageUrl
+    ? `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`
+    : alias;
+
+  return `
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+      <div class="text-center mb-4">
+        <div class="w-24 h-24 ${
+          isImageUrl ? "" : "bg-gradient-to-br from-gray-400 to-gray-500"
+        } rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3 overflow-hidden">
+          ${avatarHTML}
+        </div>
+        <h3 class="font-bold text-gray-900 text-lg">${user.fullName}</h3>
+        <p class="text-sm text-gray-500">@${user.username}</p>
+      </div>
+      <div class="text-center">
+        <p class="text-sm text-gray-500 mb-2">✓ Request Sent</p>
+        <button
+          class="cancel-request-btn w-full px-4 py-2.5 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
+          data-user-id="${user.id}"
+        >
+          Cancel Request
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// Load suggestions
+function loadSuggestions() {
+  const suggestions = getSuggestions();
+  const suggestionsGrid = document.getElementById("suggestions-grid");
+
+  if (suggestions.length === 0) {
+    suggestionsGrid.innerHTML = `
+      <div class="col-span-3 text-center py-12">
+        <p class="text-gray-500">No suggestions available</p>
+      </div>
+    `;
+    return;
+  }
+
+  suggestionsGrid.innerHTML = suggestions
+    .map((user) => createSuggestionCard(user))
+    .join("");
+  attachSuggestionListeners();
+}
+
+// Create suggestion card
+function createSuggestionCard(user) {
+  const alias = user.alias || user.profilePicture;
+  const isImageUrl =
+    user.profilePicture && user.profilePicture.startsWith("http");
+  const avatarHTML = isImageUrl
+    ? `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover rounded-full" />`
+    : alias;
+
+  return `
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+      <div class="text-center mb-4">
+        <div class="w-24 h-24 ${
+          isImageUrl ? "" : "bg-gradient-to-br from-pink-500 to-rose-500"
+        } rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-3 overflow-hidden">
+          ${avatarHTML}
+        </div>
+        <h3 class="font-bold text-gray-900 text-lg">${user.fullName}</h3>
+        <p class="text-sm text-gray-500">@${user.username}</p>
+        <p class="text-xs text-gray-400 mt-2">${
+          Math.floor(Math.random() * 8) + 1
+        } mutual friends</p>
+      </div>
+      <button
+        class="add-friend-btn w-full px-4 py-2.5 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
+        data-user-id="${user.id}"
+      >
+        Add Friend
+      </button>
+    </div>
+  `;
+}
+
+// Attach request listeners
+function attachRequestListeners() {
+  // Accept buttons
+  document.querySelectorAll(".accept-request-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const userId = parseInt(this.getAttribute("data-user-id"));
+      acceptFriendRequest(userId);
+      showSuccessToast("Friend request accepted!");
+      loadFriendRequests();
+      loadAllFriends();
+      updateStats();
+    });
+  });
+
+  // Decline buttons
+  document.querySelectorAll(".decline-request-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const userId = parseInt(this.getAttribute("data-user-id"));
+      declineFriendRequest(userId);
+      showSuccessToast("Friend request declined");
+      loadFriendRequests();
+    });
+  });
+
+  // Cancel request buttons
+  document.querySelectorAll(".cancel-request-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const userId = parseInt(this.getAttribute("data-user-id"));
+      cancelFriendRequest(userId);
+      showSuccessToast("Friend request cancelled");
+      loadFriendRequests();
+    });
+  });
+}
+
+// Attach suggestion listeners
+function attachSuggestionListeners() {
+  document.querySelectorAll(".add-friend-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const userId = parseInt(this.getAttribute("data-user-id"));
+      sendFriendRequest(userId);
+
+      // Update button to show request sent
+      this.textContent = "✓ Request Sent";
+      this.classList.remove("bg-blue-600", "hover:bg-blue-700");
+      this.classList.add("bg-gray-400", "cursor-not-allowed");
+      this.disabled = true;
+
+      showSuccessToast("Friend request sent!");
+
+      // Reload requests to show in sent section
+      setTimeout(() => {
+        loadFriendRequests();
+      }, 500);
+    });
+  });
 }
 
 // Handle logout

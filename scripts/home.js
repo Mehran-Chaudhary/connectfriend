@@ -20,6 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Load online friends
   loadOnlineFriends();
 
+  // Load friend requests
+  loadHomeFriendRequests();
+
+  // Load suggestions
+  loadHomeSuggestions();
+
   // Setup event listeners
   setupEventListeners();
 });
@@ -741,6 +747,154 @@ function showSuccessMessage(message) {
   setTimeout(() => {
     successDiv.remove();
   }, 3000);
+}
+
+// Load friend requests in home sidebar
+function loadHomeFriendRequests() {
+  const requests = getFriendRequests();
+  const requestsContainer = document.getElementById("home-friend-requests");
+  const requestsWidget = document.getElementById("friend-requests-widget");
+
+  if (!requestsContainer || !requestsWidget) return;
+
+  if (requests.length === 0) {
+    requestsWidget.classList.add("hidden");
+    return;
+  }
+
+  requestsWidget.classList.remove("hidden");
+
+  // Show only first request
+  const user = requests[0];
+  const alias = user.alias || user.profilePicture;
+  const isImageUrl =
+    user.profilePicture && user.profilePicture.startsWith("http");
+  const avatarHTML = isImageUrl
+    ? `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover" />`
+    : alias;
+
+  requestsContainer.innerHTML = `
+    <div class="flex items-center space-x-3">
+      <div class="w-12 h-12 ${
+        isImageUrl ? "" : "bg-gradient-to-br from-indigo-500 to-purple-500"
+      } rounded-full flex items-center justify-center text-white font-bold overflow-hidden border-2 border-gray-200">
+        ${avatarHTML}
+      </div>
+      <div class="flex-1">
+        <p class="text-sm font-semibold text-gray-900">${user.fullName}</p>
+        <p class="text-xs text-gray-500">${
+          Math.floor(Math.random() * 5) + 1
+        } mutual friends</p>
+      </div>
+    </div>
+    <div class="flex space-x-2 mt-3">
+      <button
+        class="home-accept-btn flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+        data-user-id="${user.id}"
+      >
+        Accept
+      </button>
+      <button
+        class="home-decline-btn flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-300 transition-colors"
+        data-user-id="${user.id}"
+      >
+        Decline
+      </button>
+    </div>
+  `;
+
+  // Attach listeners
+  const acceptBtn = requestsContainer.querySelector(".home-accept-btn");
+  const declineBtn = requestsContainer.querySelector(".home-decline-btn");
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener("click", function () {
+      const userId = parseInt(this.getAttribute("data-user-id"));
+      acceptFriendRequest(userId);
+      showSuccessMessage("Friend request accepted!");
+      loadHomeFriendRequests();
+      loadNewsFeed(); // Reload to show new friend's posts
+    });
+  }
+
+  if (declineBtn) {
+    declineBtn.addEventListener("click", function () {
+      const userId = parseInt(this.getAttribute("data-user-id"));
+      declineFriendRequest(userId);
+      showSuccessMessage("Friend request declined");
+      loadHomeFriendRequests();
+    });
+  }
+}
+
+// Load suggestions in home sidebar
+function loadHomeSuggestions() {
+  const suggestions = getSuggestions();
+  const suggestionsContainer = document.getElementById("home-suggestions");
+
+  if (!suggestionsContainer) return;
+
+  if (suggestions.length === 0) {
+    suggestionsContainer.innerHTML = `
+      <p class="text-sm text-gray-500 text-center py-4">No suggestions available</p>
+    `;
+    return;
+  }
+
+  // Show only first 3 suggestions
+  const displaySuggestions = suggestions.slice(0, 3);
+
+  suggestionsContainer.innerHTML = displaySuggestions
+    .map((user, index) => {
+      const alias = user.alias || user.profilePicture;
+      const isImageUrl =
+        user.profilePicture && user.profilePicture.startsWith("http");
+      const avatarHTML = isImageUrl
+        ? `<img src="${user.profilePicture}" alt="${user.fullName}" class="w-full h-full object-cover" />`
+        : alias;
+
+      return `
+        <div class="${index > 0 ? "pt-4 border-t border-gray-200" : ""}">
+          <div class="flex items-center space-x-3 mb-3">
+            <div class="w-12 h-12 ${
+              isImageUrl ? "" : "bg-gradient-to-br from-pink-500 to-rose-500"
+            } rounded-full flex items-center justify-center text-white font-bold overflow-hidden border-2 border-gray-200">
+              ${avatarHTML}
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-semibold text-gray-900">${
+                user.fullName
+              }</p>
+              <p class="text-xs text-gray-500">${
+                Math.floor(Math.random() * 8) + 1
+              } mutual friends</p>
+            </div>
+          </div>
+          <button
+            class="home-add-friend-btn w-full px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-semibold hover:bg-blue-100 transition-colors"
+            data-user-id="${user.id}"
+          >
+            Add Friend
+          </button>
+        </div>
+      `;
+    })
+    .join("");
+
+  // Attach listeners
+  document.querySelectorAll(".home-add-friend-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const userId = parseInt(this.getAttribute("data-user-id"));
+      sendFriendRequest(userId);
+
+      this.textContent = "✓ Request Sent";
+      this.classList.remove("bg-blue-50", "text-blue-600", "hover:bg-blue-100");
+      this.classList.add("bg-gray-200", "text-gray-600", "cursor-not-allowed");
+      this.disabled = true;
+
+      showSuccessMessage("Friend request sent!");
+    });
+  });
 }
 
 // Handle logout
